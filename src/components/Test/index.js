@@ -76,6 +76,7 @@ class Gantt extends Component {
                         addTask={this.addTask}
                     />
                     <GanttArea
+                        zoom={this.state.zoom}
                         scale={this.state.scale}
                         tasks={this.state.tasks}
                     />

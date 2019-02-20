@@ -11,11 +11,26 @@ import '../GanttStyles.scss';
 class GanttArea extends Component {
 
     daysInMonth = (year, month) => {
-        const arr = [];
-        for (let i = 1; i <= (33 - new Date(year, month, 33).getDate()); i++) {
-            arr.push(i);
+        switch (this.props.zoom) {
+            case('day'):
+                let arr = [];
+                for (let i = 1; i <= (33 - new Date(year, month, 33).getDate()); i++) {
+                    arr.push(i);
+                }
+                console.log(arr);
+                return arr;
+                break;
+            case('month'):
+                return arr = [1];
+                break;
+            case('quarter'):
+                return arr = [];
+                break;
+            default:
+                console.error('Zoom not found');
+                break;
         }
-        return arr;
+
     };
 
     createInterval = () => {
@@ -28,7 +43,7 @@ class GanttArea extends Component {
         return ({first: first, last: last})
     };
 
-
+    //quantity if cells
     calcMonthsNumber = (first, last) => {
         const firstDate = first;
         const lastDate = last;
@@ -36,7 +51,6 @@ class GanttArea extends Component {
         let monthBetween = (lastDate.getFullYear() - firstDate.getFullYear()) * 12;
         monthBetween -= firstDate.getMonth();
         monthBetween += lastDate.getMonth();
-        //TODO implement leap year
         const arr = [];
 
         let month = firstDate.getMonth();
@@ -56,22 +70,22 @@ class GanttArea extends Component {
         const {tasks, scale} = this.props;
         const interval = this.createInterval();
         return (
-            <div className='gantt gantt-area__wrapper' style={{flex: '70%', overflowY: 'hidden', position: 'relative'}}>
+            <div className='gantt gantt-area__wrapper'>
                 <GanttScaleLine
-                    width={cellWidth*scale}
+                    width={cellWidth * scale}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
                 <GanttGrid
-                    width={cellWidth*scale}
+                    width={cellWidth * scale}
                     tasks={tasks}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
                 <GanttTasksLayer
-                    width={cellWidth*scale}
+                    width={cellWidth * scale}
                     tasks={tasks}
                     interval={interval}
                 />

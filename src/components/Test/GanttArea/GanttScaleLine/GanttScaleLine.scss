@@ -1,0 +1,39 @@
+.gantt-scale-line {
+  &__wrapper {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+  }
+
+  &__month-line {
+    height: 18px;
+    line-height: 18px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+  }
+
+  &__month {
+    text-align: center;
+    height: inherit;
+    border-right: 1px solid #ccc;
+    flex: auto;
+  }
+
+  &__day-line {
+    height: 18px;
+    line-height: 18px;
+    display: flex;
+  }
+  &__day-wrapper{
+    height: inherit;
+    border-right: 1px solid #ccc;
+  }
+
+  &__day{
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
