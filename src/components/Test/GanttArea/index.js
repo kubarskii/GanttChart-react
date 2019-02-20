@@ -3,7 +3,7 @@ import GanttScaleLine from './GanttScaleLine/index';
 import GanttGrid from './GanttGrid/index';
 import GanttTasksLayer from './GanttTasksLayer/index';
 import GanttLinksLayer from './GanttLinksLayer/index';
-import {cellWidth} from '../../../constants/gantt'
+import {CELL_DAY_WIDTH} from '../../../constants/gantt'
 
 import './GanttArea.scss';
 import '../GanttStyles.scss';
@@ -17,18 +17,13 @@ class GanttArea extends Component {
                 for (let i = 1; i <= (33 - new Date(year, month, 33).getDate()); i++) {
                     arr.push(i);
                 }
-                console.log(arr);
                 return arr;
-                break;
             case('month'):
                 return arr = [1];
-                break;
             case('quarter'):
                 return arr = [];
-                break;
             default:
                 console.error('Zoom not found');
-                break;
         }
 
     };
@@ -67,25 +62,31 @@ class GanttArea extends Component {
     };
 
     render() {
-        const {tasks, scale} = this.props;
+        const {tasks, scale, zoom} = this.props;
         const interval = this.createInterval();
         return (
             <div className='gantt gantt-area__wrapper'>
                 <GanttScaleLine
-                    width={cellWidth * scale}
+                    zoom={zoom}
+                    scale={scale}
+                    width={CELL_DAY_WIDTH * scale}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
                 <GanttGrid
-                    width={cellWidth * scale}
+                    zoom={zoom}
+                    scale={scale}
+                    width={CELL_DAY_WIDTH * scale}
                     tasks={tasks}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
                 <GanttTasksLayer
-                    width={cellWidth * scale}
+                    scale={scale}
+                    zoom={zoom}
+                    width={CELL_DAY_WIDTH * scale}
                     tasks={tasks}
                     interval={interval}
                 />
