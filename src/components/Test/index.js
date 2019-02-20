@@ -10,16 +10,24 @@ class Gantt extends Component {
 
     }
 
-
     //TODO get tasks from Redux store
     state = {
-        zoom: 'day',
+        zoom: 'month',
         tasks: [
             {
                 id: '123',
                 name: 'Планирование',
-                begin: new Date(2019, 5, 20),
-                end: new Date(2019, 6, 1),
+                begin: new Date(2019, 5, 1),
+                end: new Date(2019, 6, 4),
+                progress: 10,
+                links: [],
+                level: 1,
+            },
+            {
+                id: '1223',
+                name: 'Что-то',
+                begin: new Date(2019, 7, 20),
+                end: new Date(2019, 7, 23),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -28,7 +36,16 @@ class Gantt extends Component {
                 id: '1211',
                 name: 'Планирование',
                 begin: new Date(2019, 6, 4),
-                end: new Date(2019, 6, 12),
+                end: new Date(2021, 6, 12),
+                progress: 10,
+                links: [],
+                level: 1,
+            },
+            {
+                id: '1211',
+                name: 'Еще что-то',
+                begin: new Date(2019, 6, 4),
+                end: new Date(2019, 7, 12),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -61,11 +78,22 @@ class Gantt extends Component {
         this.setState({scale: this.state.scale - 0.05})
     };
 
+    toMonth = () => {
+        this.setState({zoom: 'month'});
+
+    };
+
+    toDay = () => {
+        this.setState({zoom: 'day'});
+    };
+
     render() {
         return (
             <div>
                 <div>
                     <GanttTools
+                        toDay={this.toDay}
+                        toMonth={this.toMonth}
                         zoomIn={this.zoomIn}
                         zoomOut={this.zoomOut}
                     />
