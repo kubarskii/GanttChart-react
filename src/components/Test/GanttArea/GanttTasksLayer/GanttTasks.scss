@@ -1,0 +1,21 @@
+.gantt-tasks {
+  &__wrapper {
+    position: absolute;
+    line-height: 37px;
+    height: 100%;
+    top: 38px;
+  }
+}
+
+.gantt-one-task {
+  &__wrapper {
+    height: 36px;
+    color: #fff;
+  }
+  &__task{
+    border: 1px solid #ccc;
+    background: #2196f3;
+    border-radius: 1px;
+
+  }
+}

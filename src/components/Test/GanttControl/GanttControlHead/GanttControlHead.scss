@@ -1,0 +1,39 @@
+.gantt-control-head {
+  &__wrapper {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    cursor: default;
+  }
+
+  &__wrapper > div {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid #cccccc;
+    width: 100px;
+    height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 36px;
+
+    &:first-child{
+      border-left: 1px solid #ccc;
+    }
+
+    &:last-child {
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 24px;
+      color: #7fd5ff;
+      &:hover{
+        color: #7299c9;
+      }
+    }
+  }
+
+  &.button-add-task {
+    width: 36px;
+  }
+
+}

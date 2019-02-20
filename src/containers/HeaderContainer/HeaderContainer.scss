@@ -1,0 +1,28 @@
+.form-control {
+  &.header-nav-input {
+    color: #fff;
+    padding: 0;
+    margin-top: 16px;
+
+    &::placeholder {
+      color: #fff;
+    }
+
+    &:focus {
+      border-bottom-color: #fff !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar-expand-md .navbar-collapse {
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+    max-height: none;
+  }
+}

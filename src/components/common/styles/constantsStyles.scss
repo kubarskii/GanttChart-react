@@ -1,0 +1,10 @@
+$color-grey-1: #ccc;
+$color-grey-2: #aeaeae;
+$color-grey-3: #9c9c9c;
+$color-grey-4: #696969;
+$color-grey-5: #313131;
+
+.container-100vh{
+  height: calc(100vh - 95px);
+  overflow: auto;
+}

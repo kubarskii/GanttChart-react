@@ -1,0 +1,12 @@
+@import "../styles/constantsStyles.scss";
+
+.heading-wrapper{
+  padding: 0 0 0 20px;
+  &>h2{
+    padding: 10px;
+    font-size: 23px;
+    font-weight: 500;
+    color: $color-grey-4;
+    margin: 0;
+  }
+}
