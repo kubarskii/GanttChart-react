@@ -19,7 +19,11 @@ class GanttArea extends Component {
                 }
                 return arr;
             case('month'):
-                return arr = [1];
+                let arr2 = [];
+                for (let i = 1; i <= (33 - new Date(year, month, 33).getDate()); i++) {
+                    arr2.push(i);
+                }
+                return arr = [arr2.length];
             case('quarter'):
                 return arr = [];
             default:
@@ -91,6 +95,8 @@ class GanttArea extends Component {
                     interval={interval}
                 />
                 <GanttTasksLayer
+                    calcMonthsNumber={this.calcMonthsNumber}
+                    daysInMonth={this.daysInMonth}
                     scale={scale}
                     zoom={zoom}
                     width={width*scale}
