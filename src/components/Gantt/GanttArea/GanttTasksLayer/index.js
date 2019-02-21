@@ -11,8 +11,13 @@ export default class GanttTasksLayer extends Component {
 
     calcBegin = () => {
         const {first} = this.props.interval;
-        const begin = Date.parse(new Date(first.getFullYear(), first.getMonth(), 1));
-        return begin;
+        return Date.parse(new Date(first.getFullYear(), first.getMonth(), 1));
+        /*return begin;*/
+    };
+
+    calcMonthBegin = (timestamp) => {
+        const date = new Date(timestamp);
+        return Date.parse(new Date(date.getFullYear(), date.getMonth(), 1));
     };
 
     calcMargin = (timestamp) => {
@@ -22,23 +27,23 @@ export default class GanttTasksLayer extends Component {
                 return Math.floor(((timestamp - begin) / 1000 / 60 / 60 / 24));
             case 'month':
                 //Month quantity before
-                return ((timestamp - begin) / 1000 / 60 / 60 / 24 / 31);
-            default: return 1;
+                const monthBefore = this.props.calcMonthsNumber(new Date(begin), new Date(timestamp)).length - 1;
+                const monthsQ = this.props.daysInMonth(2019, new Date(timestamp).getMonth());
+                return monthBefore + ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ);
+            default:
+                return 1;
         }
 
     };
     calcWidth = (begin, end) => {
         const length = (end - this.calcBegin()) - (begin - this.calcBegin());
-/*
-        console.log(length / 1000 / 60 / 60 / 24);
-*/
         switch (this.props.zoom) {
             case 'day':
                 return length / 1000 / 60 / 60 / 24 + 1;
             case 'month':
-                console.log(length / 1000 / 60 / 60 / 24 / 30.5);
                 return (length / 1000 / 60 / 60 / 24 / 30.5);
-            default: return 1;
+            default:
+                return 1;
         }
 
     };
@@ -54,7 +59,8 @@ export default class GanttTasksLayer extends Component {
             case 'month':
                 width = CELL_MONTH_WIDTH;
                 break;
-            default: width = 1;
+            default:
+                width = 1;
         }
         return (
             <div className='gantt-tasks__wrapper'>

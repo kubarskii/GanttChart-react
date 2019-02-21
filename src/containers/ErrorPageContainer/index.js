@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {MDBCol, MDBContainer, MDBRow} from "mdbreact";
-import TestComponent from '../../components/Test/index'
+import Gantt from '../../components/Gantt/index'
 
 export default class MainPageContainer extends Component {
 
@@ -12,7 +12,7 @@ export default class MainPageContainer extends Component {
                         <div>
 
                             <div className="gantt-container" style={{height: '350px'}}>
-                                <TestComponent/>
+                                <Gantt/>
                             </div>
                         </div>
                     </MDBCol>
