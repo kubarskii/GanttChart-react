@@ -18,67 +18,39 @@ export default class GanttScaleLine extends Component {
         const {first, last} = this.props.interval;
         const {width, zoom} = this.props;
 
-        switch (zoom) {
-            case 'day':
-                return (
-                    <div className='gantt-scale-line__wrapper'>
-                        <div>
-                            <div className='gantt-scale-line__month-line'>
-                                {this.renderMonth(first, last, width, zoom)}
-                            </div>
-                            <div>
-                                {width > 11 ? this.renderDays(first, last, width) : null}
-                            </div>
-                        </div>
-                    </div>
-                );
+        return (
+            <div className='gantt-scale-line__wrapper'>
+                {zoom === 'month' ?
+                    <div className='gantt-scale-line__month-line' style={{borderRight: '1px solid #ccc'}}>
+                        {this.renderYear(first, last, width)}
+                    </div> : null}
 
-            case 'month':
-                return (
-                    <div className='gantt-scale-line__wrapper'>
-                        <div className='gantt-scale-line__month-line' style={{borderRight:'1px solid #ccc'}}>
-                            {this.renderYear(first, last, width)}
-                        </div>
-                        <div className='gantt-scale-line__month-line'>
-                            {this.renderMonth(first, last, width, zoom)}
-                        </div>
-                    </div>
-                );
-        }
+                <div className='gantt-scale-line__month-line'>
+                    {this.renderMonth(first, last, width)}
+                </div>
+                {zoom === 'day' ?
+                    <div className='gantt-scale-line__month-line'>
+                        {this.renderDays(first, last, width)}
+                    </div> : null}
+            </div>
+        );
+
     }
 
-    renderMonth = (first, last, width, zoom) => {
+    renderMonth = (first, last, width) => {
         const calcMonthsNumber = this.props.calcMonthsNumber;
-        switch (zoom) {
-            case 'day':
-                return (
-                    calcMonthsNumber(first, last).map((month, i) => (
-                        <div className='gantt gantt-scale-line__month'
-                             key={i}
-                             style={{
-                                 width: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
-                                 background: (i % 2 > 0) ? '#d8f5ff' : 'none'
-                             }}>
-                            {`${monthNames[month.month]} ${month.year}`}
-                        </div>
-                    ))
-                );
-
-            case 'month':
-                return (
-                    calcMonthsNumber(first, last).map((month, i) => (
-                            <div className='gantt gantt-scale-line__month'
-                                 key={i}
-                                 style={{
-                                     width: `${this.props.daysInMonth(month.year, month.month).length * width * 10}px`,
-                                     background: (i % 2 > 0) ? '#d8f5ff' : 'none'
-                                 }}>
-                                {`${monthNames[month.month]} ${month.year}`}
-                            </div>
-                        )
-                    )
-                );
-        }
+        return (
+            calcMonthsNumber(first, last).map((month, i) => (
+                <div className='gantt gantt-scale-line__month'
+                     key={i}
+                     style={{
+                         width: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
+                         background: (i % 2 > 0) ? '#d8f5ff' : 'none'
+                     }}>
+                    <div>{`${monthNames[month.month]} ${month.year}`}</div>
+                </div>
+            ))
+        );
 
     };
 
@@ -95,11 +67,11 @@ export default class GanttScaleLine extends Component {
                 ))}
             </div>
         );
-    }
+    };
 
 
     renderYear = (first, last, width) => {
-        return(
+        return (
             <div></div>
         );
     }

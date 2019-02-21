@@ -22,6 +22,8 @@
     height: inherit;
     border-right: 1px solid #ccc;
     flex: auto;
+    font-size: 13px;
+    line-height: 13px;
   }
 
   &__day-line {
@@ -36,6 +38,7 @@
 
   &__day{
     max-width: 100%;
+    font-size: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

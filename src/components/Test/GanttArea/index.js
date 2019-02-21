@@ -3,7 +3,7 @@ import GanttScaleLine from './GanttScaleLine/index';
 import GanttGrid from './GanttGrid/index';
 import GanttTasksLayer from './GanttTasksLayer/index';
 import GanttLinksLayer from './GanttLinksLayer/index';
-import {CELL_DAY_WIDTH} from '../../../constants/gantt'
+import {CELL_DAY_WIDTH, CELL_MONTH_WIDTH} from '../../../constants/gantt'
 
 import './GanttArea.scss';
 import '../GanttStyles.scss';
@@ -61,15 +61,22 @@ class GanttArea extends Component {
         return arr;
     };
 
+
+
     render() {
         const {tasks, scale, zoom} = this.props;
         const interval = this.createInterval();
+        let width;
+        switch (zoom) {
+            case 'day': width=CELL_DAY_WIDTH; break;
+            case 'month': width=CELL_MONTH_WIDTH; break;
+        }
         return (
             <div className='gantt gantt-area__wrapper'>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
-                    width={CELL_DAY_WIDTH * scale}
+                    width={width*scale}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
@@ -77,7 +84,7 @@ class GanttArea extends Component {
                 <GanttGrid
                     zoom={zoom}
                     scale={scale}
-                    width={CELL_DAY_WIDTH * scale}
+                    width={width*scale}
                     tasks={tasks}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
@@ -86,7 +93,7 @@ class GanttArea extends Component {
                 <GanttTasksLayer
                     scale={scale}
                     zoom={zoom}
-                    width={CELL_DAY_WIDTH * scale}
+                    width={width*scale}
                     tasks={tasks}
                     interval={interval}
                 />

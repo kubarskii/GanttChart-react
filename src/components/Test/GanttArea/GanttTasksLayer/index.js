@@ -20,28 +20,32 @@ export default class GanttTasksLayer extends Component {
         switch (this.props.zoom) {
             case 'day':
                 return Math.floor(((timestamp - begin) / 1000 / 60 / 60 / 24));
-                break;
             case 'month':
-                //Calculate number of month
-                return ((timestamp - begin) / 1000 / 60 / 60 / 24 / 30).toFixed(2);
-                break;
+                //Month quantity before
+                return ((timestamp - begin) / 1000 / 60 / 60 / 24 / 31);
+            default: return 1;
         }
 
     };
     calcWidth = (begin, end) => {
+        const length = (end - this.calcBegin()) - (begin - this.calcBegin());
+/*
+        console.log(length / 1000 / 60 / 60 / 24);
+*/
         switch (this.props.zoom) {
             case 'day':
-                return Math.floor(((end - begin) / 1000 / 60 / 60 / 24)) + 1;
+                return length / 1000 / 60 / 60 / 24 + 1;
             case 'month':
-                return (((end - begin) / 1000 / 60 / 60 / 24 / 30.5));
-                break;
+                console.log(length / 1000 / 60 / 60 / 24 / 30.5);
+                return (length / 1000 / 60 / 60 / 24 / 30.5);
+            default: return 1;
         }
 
     };
 
 
     render() {
-        const {tasks, interval, zoom, scale} = this.props;
+        const {tasks, zoom, scale} = this.props;
         let width;
         switch (zoom) {
             case 'day':
@@ -50,6 +54,7 @@ export default class GanttTasksLayer extends Component {
             case 'month':
                 width = CELL_MONTH_WIDTH;
                 break;
+            default: width = 1;
         }
         return (
             <div className='gantt-tasks__wrapper'>

@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import '../../GanttStyles.scss';
+import './GanttGrid.scss';
 
 export default class GanttGrid extends Component {
 
 
     render() {
 
-        const {tasks, daysInMonth, calcMonthsNumber, width, zoom, scale} = this.props;
+        const {tasks, daysInMonth, calcMonthsNumber, width, zoom} = this.props;
         const {first, last} = this.props.interval;
+
+
         return (
-            <div className='gantt-grid__wrapper' style={{marginTop: '-1px', display: 'grid'}}>
+            <div className='gantt-grid__wrapper' style={{borderTop:'1px solid #fff', display: 'grid'}}>
                 {tasks.map((task, i) => (
                     <div className='gantt-grid__row' key={i}
                          style={{height: '36px', display: 'flex'}}>
-                        {this.renderGrid(first, last, width, zoom)}
+                        {this.renderGrid(first, last, width)}
 
                     </div>
                 ))}
@@ -22,43 +25,20 @@ export default class GanttGrid extends Component {
         );
     }
 
-    renderGrid = (first, last, width, zoom) => {
-        switch (zoom) {
-            case 'day':
+    renderGrid = (first, last, width) => {
+
                 return (this.props.calcMonthsNumber(first, last).map((month, i) => (
                             this.props.daysInMonth(month.year, month.month).map((day, i) =>
                                 <div className='gantt-grid__cell' key={i} style={{
-                                    display: 'inline-block',
+
                                     width: `${width}px`,
-                                    height: 'inherit',
-                                    borderRight: '1px solid #ccc',
-                                    borderBottom: '1px solid #ccc',
-                                }}>
-                                </div>
-                            )
-                        )
-                    )
-                );
-                break;
-            case 'month':
-                return (this.props.calcMonthsNumber(first, last).map((month, i) => (
-                            this.props.daysInMonth(month.year, month.month).map((day, i) =>
-                                <div className='gantt-grid__cell' key={i} style={{
-                                    display: 'inline-block',
-                                    width: `${width*10}px`,
-                                    height: 'inherit',
-                                    borderRight: '1px solid #ccc',
-                                    borderBottom: '1px solid #ccc',
-                                }}>
-                                </div>
-                            )
-                        )
-                    )
-                );
-                break;
 
-        }
+                                }}>
+                                </div>
+                            )
+                        )
+                    )
+                );
     }
-
 
 }
