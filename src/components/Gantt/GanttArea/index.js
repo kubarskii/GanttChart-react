@@ -32,8 +32,7 @@ class GanttArea extends Component {
 
     };
 
-    createInterval = () => {
-        const {tasks} = this.props;
+    createInterval = (tasks = this.props.tasks) => {
         let first, last;
         tasks.map((task, i) => {
             first = ((first > task.begin.valueOf()) || (first === undefined)) ? task.begin : first;
@@ -95,6 +94,7 @@ class GanttArea extends Component {
                     interval={interval}
                 />
                 <GanttTasksLayer
+                    createInterval={this.createInterval}
                     calcMonthsNumber={this.calcMonthsNumber}
                     daysInMonth={this.daysInMonth}
                     scale={scale}
