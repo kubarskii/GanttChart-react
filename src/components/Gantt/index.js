@@ -11,50 +11,56 @@ class Gantt extends Component {
     }
 
     //TODO get tasks from Redux store
+    //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
         zoom: 'month',
         tasks: [
             {
                 id: '1',
+                type: 'task',
                 name: 'Планирование',
-                begin: new Date(2019, 0, 11),
-                end: new Date(2019, 1, 28),
+                begin: new Date(2020, 2, 1),
+                end: new Date(2020, 2, 16),
                 progress: 10,
                 links: [],
                 level: 1,
             },
             {
                 id: '2',
+                type: 'task',
                 name: 'Что-то',
-                begin: new Date(2019, 1, 1),
-                end: new Date(2019, 2, 15),
+                begin: new Date(2020, 1, 1),
+                end: new Date(2020, 2, 16),
                 progress: 10,
                 links: [],
                 level: 1,
             },
             {
                 id: '3',
+                type: 'task',
                 name: 'Планирование',
-                begin: new Date(2019, 3, 1),
-                end: new Date(2019, 4, 29),
+                begin: new Date(2020, 0, 1),
+                end: new Date(2020, 1, 29),
                 progress: 10,
                 links: [],
                 level: 1,
             },
             {
                 id: '4',
+                type: 'task',
                 name: 'Еще что-то',
-                begin: new Date(2019, 3, 1),
-                end: new Date(2019, 4, 31),
+                begin: new Date(2020, 1, 1),
+                end: new Date(2020, 2, 31),
                 progress: 10,
                 links: [],
                 level: 1,
             },
             {
                 id: '5',
+                type: 'task',
                 name: 'Еще что-то',
-                begin: new Date(2019, 4, 1),
-                end: new Date(2019, 5, 15),
+                begin: new Date(2020, 0, 1),
+                end: new Date(2020, 1, 15),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -80,11 +86,11 @@ class Gantt extends Component {
     };
 
     zoomIn = () => {
-        this.setState({scale: this.state.scale + 0.05})
+        this.setState({scale: this.state.scale * 1.5})
     };
 
     zoomOut = () => {
-        this.setState({scale: this.state.scale - 0.05})
+        this.setState({scale: this.state.scale / 1.5})
     };
 
     toMonth = () => {

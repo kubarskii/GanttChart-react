@@ -1,7 +1,9 @@
 .gantt-grid {
   &__row {
     &:last-child {
-      border-bottom: 1px solid #ccc;
+      & > .gantt-grid__cell{
+        border-bottom: 1px solid #ccc;
+      }
     }
   }
 

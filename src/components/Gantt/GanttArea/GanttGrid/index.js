@@ -7,7 +7,7 @@ export default class GanttGrid extends Component {
 
     render() {
 
-        const {tasks, daysInMonth, calcMonthsNumber, width, zoom} = this.props;
+        const {tasks, width} = this.props;
         const {first, last} = this.props.interval;
 
 
