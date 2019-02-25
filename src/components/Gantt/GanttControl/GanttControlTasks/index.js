@@ -15,7 +15,7 @@ export default class GanttControlTasks extends Component {
             <div className='gantt-control-task__wrapper'>
                 {tasks.map((task,i)=>(
                     <div className='gantt-control-task__row' data-task-id={task.id} data-task-level={`${task.level}`} key={i}>
-                        <div>{task.name}</div>
+                        <div className='txt-align-left'>{`${task.level} ${task.name}`}</div>
                         <div>{this.toDate(Date.parse(task.begin))}</div>
                         <div>{this.toDate(Date.parse(task.end))} </div>
                         <div>1</div>

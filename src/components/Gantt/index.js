@@ -15,7 +15,7 @@ class Gantt extends Component {
     //TODO get tasks from Redux store
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
-        divider: 466,
+        divider: 464,
         zoom: 'month',
         tasks: [
             {
@@ -117,9 +117,12 @@ class Gantt extends Component {
             return false;
         };
         devider.style.position = 'absolute';
-        devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
-        console.log(document.body.clientWidth, devider.style.left, e.pageX / (document.body.clientWidth));
-        this.setState({divider: parseInt(devider.style.left)})
+        if((e.pageX - devider.offsetWidth / 2 > 13)&&(e.pageX - devider.offsetWidth / 2 < document.body.clientWidth-15)){
+            devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
+            console.log(document.body.clientWidth, devider.style.left, e.pageX / (document.body.clientWidth));
+            this.setState({divider: parseInt(devider.style.left)})
+        }
+
     };
 
     onMouseDown = (e) => {
