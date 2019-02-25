@@ -11,7 +11,7 @@ export default class MainPageContainer extends Component {
                     <MDBCol>
                         <div>
 
-                            <div className="gantt-container" style={{height: '350px'}}>
+                            <div className="gantt-container" style={{height: 'auto'}}>
                                 <Gantt/>
                             </div>
                         </div>

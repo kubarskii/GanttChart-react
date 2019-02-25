@@ -41,7 +41,7 @@ class Modal extends Component {
     };
 
     render() {
-        const {classes, open, handleClose} = this.props;
+        const {open, handleClose} = this.props;
 
         return (
             <React.Fragment>
