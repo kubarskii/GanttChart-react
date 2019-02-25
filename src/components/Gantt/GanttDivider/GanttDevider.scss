@@ -1,0 +1,9 @@
+.devider{
+  width: 6px;
+  background: black;
+  cursor: ew-resize;
+  left: 30%;
+  height: calc(100% - 30px);
+  position: absolute;
+  z-index: 10000 !important;
+}

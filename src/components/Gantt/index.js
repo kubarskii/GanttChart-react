@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import GanttControl from './GanttControl/index'
-import GanttArea from './GanttArea/index'
-import GanttTools from './GanttTools/index'
+import ReactDOM from 'react-dom';
+import GanttControl from './GanttControl/index';
+import GanttArea from './GanttArea/index';
+import GanttTools from './GanttTools/index';
+import GanttDivider from './GanttDivider/index';
 
 class Gantt extends Component {
 
@@ -13,13 +15,14 @@ class Gantt extends Component {
     //TODO get tasks from Redux store
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
+        divider: 466,
         zoom: 'month',
         tasks: [
             {
                 id: '1',
                 type: 'task',
                 name: 'Планирование',
-                begin: new Date(2020, 2, 1),
+                begin: new Date(2020, 1, 29),
                 end: new Date(2020, 2, 16),
                 progress: 10,
                 links: [],
@@ -86,11 +89,14 @@ class Gantt extends Component {
     };
 
     zoomIn = () => {
-        this.setState({scale: this.state.scale * 1.5})
+        this.setState({scale: this.state.scale * 1.5});
+        console.log(this.state.scale);
     };
 
     zoomOut = () => {
-        this.setState({scale: this.state.scale / 1.5})
+        if (this.state.scale > 0.5) {
+            this.setState({scale: this.state.scale / 1.5});
+        }
     };
 
     toMonth = () => {
@@ -100,6 +106,36 @@ class Gantt extends Component {
 
     toDay = () => {
         this.setState({zoom: 'day'});
+    };
+
+    getRef = (node) => {
+        return this._GanttDivider = node
+    };
+
+    moveTo = (e, devider) => {
+        devider.ondragstart = () => {
+            return false;
+        };
+        devider.style.position = 'absolute';
+        devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
+        console.log(document.body.clientWidth, devider.style.left, e.pageX / (document.body.clientWidth));
+        this.setState({divider: parseInt(devider.style.left)})
+    };
+
+    onMouseDown = (e) => {
+        const divider = ReactDOM.findDOMNode(this._GanttDivider);
+        const moveTo = this.moveTo;
+        moveTo(e, divider);
+        document.onmousemove = function (e) {
+            moveTo(e, divider);
+        };
+    };
+
+    onMouseUp = (e) => {
+        const divider = ReactDOM.findDOMNode(this._GanttDivider);
+        document.onmousemove = null;
+        document.onmouseup = null;
+        divider.onmouseup = null;
     };
 
     render() {
@@ -115,10 +151,13 @@ class Gantt extends Component {
                 </div>
                 <div style={{display: 'flex'}}>
                     <GanttControl
+                        divider={this.state.divider}
                         tasks={this.state.tasks}
                         addTask={this.addTask}
                     />
+                    <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} divider={this.state.divider}/>
                     <GanttArea
+                        divider={this.state.divider}
                         zoom={this.state.zoom}
                         scale={this.state.scale}
                         tasks={this.state.tasks}

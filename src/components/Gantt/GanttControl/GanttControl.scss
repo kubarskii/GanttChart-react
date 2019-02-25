@@ -1,7 +1,10 @@
 .gantt-control{
   &__wrapper{
+    overflow-y:hidden;
     border-top: 1px solid #ccc;
-    flex: 30%;
+
+    /*
     max-width: 536px;
+    */
   }
 }

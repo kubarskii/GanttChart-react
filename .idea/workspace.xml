@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f95852c3-6854-41dd-87fe-caa4f5f29821" name="Default Changelist" comment="preAlpha 0.1 Not Test anymore">
+    <list default="true" id="f95852c3-6854-41dd-87fe-caa4f5f29821" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Gantt/GanttDivider/GanttDevider.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Gantt/GanttDivider/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttArea.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttArea.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControl.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControl.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/GanttControlHead.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/GanttControlHead.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/GanttControlTasks.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/GanttControlTasks.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttControl/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttControl/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttDevider/GanttDevider.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Gantt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gantt/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,43 +31,80 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/constants/gantt.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="289">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+              <caret line="14" column="85" selection-start-line="14" selection-start-column="85" selection-end-line="14" selection-end-column="85" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControl.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttDivider/GanttDevider.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/GanttControlHead.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/Gantt/index.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/GanttControlTasks.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="142">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/index.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="65" column="119" selection-start-line="65" selection-start-column="119" selection-end-line="65" selection-end-column="119" />
+            <state>
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -66,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+            <state relative-caret-position="41">
+              <caret line="75" column="70" selection-start-line="75" selection-start-column="70" selection-end-line="75" selection-end-column="70" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -76,10 +125,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss">
+        <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttArea.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+            <state relative-caret-position="34">
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -107,19 +156,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/src/containers/HeaderContainer/HeaderContainer.scss" />
-        <option value="$PROJECT_DIR$/src/components/MaimPageComponent/index.js" />
-        <option value="$PROJECT_DIR$/src/components/common/Heading/index.js" />
-        <option value="$PROJECT_DIR$/src/store/index.js" />
-        <option value="$PROJECT_DIR$/src/components/common/Heading/Heading.scss" />
-        <option value="$PROJECT_DIR$/src/containers/MainPageContainer/index.js" />
-        <option value="$PROJECT_DIR$/src/components/MainPageComponent/MainPageComponent.scss" />
-        <option value="$PROJECT_DIR$/src/components/common/styles/constantsStyles.scss" />
         <option value="$PROJECT_DIR$/src/components/MainPageComponent/index.js" />
         <option value="$PROJECT_DIR$/src/components/ProjectForm/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Modal/index.js" />
         <option value="$PROJECT_DIR$/src/containers/HeaderContainer/index.js" />
         <option value="$PROJECT_DIR$/src/components/Gantt/Toolbar/index.js" />
         <option value="$PROJECT_DIR$/src/jQueryGantt-master/gantt.html" />
@@ -128,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/components/Test/GanttControl/GanntControlHead/GanntControlHead.scss" />
         <option value="$PROJECT_DIR$/src/components/Test/GanttControl/GanntControlHead/index.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlHead/index.js" />
         <option value="$PROJECT_DIR$/src/containers/Footer/index.js" />
         <option value="$PROJECT_DIR$/src/components/Test/GanttArea/GanttLinksLayer/index.js" />
@@ -149,18 +186,35 @@
         <option value="$PROJECT_DIR$/src/components/Test/index.js" />
         <option value="$PROJECT_DIR$/src/components/Test/GanttArea/GanttTasksLayer/index.js" />
         <option value="$PROJECT_DIR$/src/constants/gantt.js" />
-        <option value="$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/GanttTasks.scss" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttGrid/GanttGrid.scss" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttGrid/index.js" />
         <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/index.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss" />
+        <option value="$PROJECT_DIR$/src/store/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Modal/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttDevider/GanttDevider.scss" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttDevider/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttDivider/index.js" />
+        <option value="$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttDivider/GanttDevider.scss" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttArea.scss" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttControl/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControl.scss" />
         <option value="$PROJECT_DIR$/src/components/Gantt/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/GanttControlHead.scss" />
+        <option value="$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/GanttControlTasks.scss" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-108" />
-    <option name="y" value="107" />
-    <option name="width" value="1863" />
-    <option name="height" value="1023" />
+    <option name="x" value="65" />
+    <option name="y" value="150" />
+    <option name="width" value="1865" />
+    <option name="height" value="889" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -200,6 +254,57 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="Gantt" type="462c0819:PsiDirectoryNode" />
               <item name="GanttArea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Gantt" type="462c0819:PsiDirectoryNode" />
+              <item name="GanttControl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Gantt" type="462c0819:PsiDirectoryNode" />
+              <item name="GanttControl" type="462c0819:PsiDirectoryNode" />
+              <item name="GanttControlHead" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Gantt" type="462c0819:PsiDirectoryNode" />
+              <item name="GanttControl" type="462c0819:PsiDirectoryNode" />
+              <item name="GanttControlTasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="ErrorPageContainer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -290,6 +395,7 @@
       <workItem from="1550418614678" duration="519000" />
       <workItem from="1550422626022" duration="17402000" />
       <workItem from="1550566070911" duration="60579000" />
+      <workItem from="1550854214595" duration="11267000" />
     </task>
     <task id="LOCAL-00001" summary="preAlpha 0.1">
       <created>1550677310736</created>
@@ -340,7 +446,21 @@
       <option name="project" value="LOCAL" />
       <updated>1550750682879</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="preAlpha 0.1 Month fixed">
+      <created>1550772989117</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1550772989117</updated>
+    </task>
+    <task id="LOCAL-00009" summary="preAlpha 0.1 LeapYear fix">
+      <created>1550828893657</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1550828893657</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -349,7 +469,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118900000" />
+    <option name="totallyTimeSpent" value="144392000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -364,13 +484,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.71632653" visible="true" weight="0.1731659" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.71428573" visible="true" weight="0.17779246" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.28367347" side_tool="true" weight="0.1731659" />
+      <window_info id="npm" order="2" sideWeight="0.2857143" side_tool="true" weight="0.30733642" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" weight="0.329429" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.21961933" />
       <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.49636483" weight="0.31771597" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50363517" side_tool="true" weight="0.329429" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -380,7 +499,8 @@
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Run" order="9" sideWeight="0.4970258" visible="true" weight="0.21961933" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.329429" />
-      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="TypeScript" order="11" weight="0.329429" />
+      <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -410,133 +530,59 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="preAlpha 0.1" />
     <MESSAGE value="preAlpha 0.1 Zoom added" />
     <MESSAGE value="preAlpha 0.1 Month zoom Task beginning fix" />
     <MESSAGE value="preAlpha 0.1 Not Test anymore" />
-    <option name="LAST_COMMIT_MESSAGE" value="preAlpha 0.1 Not Test anymore" />
+    <MESSAGE value="preAlpha 0.1 Month fixed" />
+    <MESSAGE value="preAlpha 0.1 LeapYear fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="preAlpha 0.1 LeapYear fix" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa6080.23800/Const.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa6080.41468/App.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa6080.40396/index.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/gantt-for-react/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Gantt/Toolbar/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/jQueryGantt-master/ganttMaster.js" />
-    <entry file="file://$PROJECT_DIR$/src/jQueryGantt-master/gantt.html" />
-    <entry file="file://$PROJECT_DIR$/node_modules/jquery/dist/jquery.js" />
-    <entry file="file://$PROJECT_DIR$/src/utils/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanntControlHead/GanntControlHead.scss" />
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanntControlHead/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/NodeJS/lib/NodeJS.jar!/com/jetbrains/nodejs/packageJson/packageJsonSchema.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/moment/moment.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="560" column="4" selection-start-line="560" selection-start-column="4" selection-end-line="560" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Footer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlHead/GanttControlHead.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlTasks/GanttControlTasks.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ProjectForm/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControl.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttLinksLayer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlTasks/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="71" lean-forward="true" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControl.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttLinksLayer/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlTasks/index.js" />
     <entry file="file://$USER_HOME$/Desktop/gantt-master/src/StrGantt.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -589,154 +635,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttStyles.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttTools/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlHead/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttScaleLine/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttScaleLine/GanttScaleLine.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttGrid/GanttGrid.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttTasksLayer/GanttTasks.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttGrid/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="82" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttArea.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttTasksLayer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="109" selection-start-line="31" selection-start-column="109" selection-end-line="31" selection-end-column="109" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="15" lean-forward="true" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttStyles.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttTools/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/GanttControlHead/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttScaleLine/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttScaleLine/GanttScaleLine.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttGrid/GanttGrid.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttTasksLayer/GanttTasks.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttControl/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttGrid/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttArea.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/GanttArea/GanttTasksLayer/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Test/index.js" />
     <entry file="file://$PROJECT_DIR$/src/constants/gantt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        <state relative-caret-position="17">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttGrid/GanttGrid.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        <state relative-caret-position="51">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/GanttTasks.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss">
+    <entry file="file://$PROJECT_DIR$/src/utils/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+        <state relative-caret-position="-666">
+          <caret line="214" column="26" lean-forward="true" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttGrid/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+        <state relative-caret-position="234">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -745,8 +698,144 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttTasksLayer/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="65" column="119" selection-start-line="65" selection-start-column="119" selection-end-line="65" selection-end-column="119" />
+        <state relative-caret-position="153">
+          <caret line="33" column="128" selection-start-line="33" selection-start-column="128" selection-end-line="33" selection-end-column="128" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-dom/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="459">
+            <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttDevider/GanttDevider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttDevider/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="85" selection-start-line="8" selection-start-column="85" selection-end-line="8" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttStyles.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="5" selection-start-line="1" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Modal/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttDivider/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/jQueryGantt-master/gantt.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/ErrorPageContainer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="82" selection-start-line="13" selection-start-column="82" selection-end-line="13" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttDivider/GanttDevider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/GanttArea.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttArea/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="75" column="70" selection-start-line="75" selection-start-column="70" selection-end-line="75" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="85" selection-start-line="14" selection-start-column="85" selection-end-line="14" selection-end-column="85" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -755,11 +844,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Gantt/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+        <state relative-caret-position="289">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControl.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlHead/GanttControlHead.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Gantt/GanttControl/GanttControlTasks/GanttControlTasks.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>

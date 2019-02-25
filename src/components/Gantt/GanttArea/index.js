@@ -64,10 +64,8 @@ class GanttArea extends Component {
         return arr;
     };
 
-
-
     render() {
-        const {tasks, scale, zoom} = this.props;
+        const {tasks, scale, zoom, divider} = this.props;
         const interval = this.createInterval();
         let width;
         switch (zoom) {
@@ -75,7 +73,7 @@ class GanttArea extends Component {
             case 'month': width=CELL_MONTH_WIDTH; break;
         }
         return (
-            <div className='gantt gantt-area__wrapper'>
+            <div className='gantt gantt-area__wrapper' style={{width:0,order:2}}>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
