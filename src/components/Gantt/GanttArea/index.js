@@ -65,19 +65,25 @@ class GanttArea extends Component {
     };
 
     render() {
-        const {tasks, scale, zoom, divider} = this.props;
+        const {tasks, scale, zoom} = this.props;
         const interval = this.createInterval();
         let width;
         switch (zoom) {
-            case 'day': width=CELL_DAY_WIDTH; break;
-            case 'month': width=CELL_MONTH_WIDTH; break;
+            case 'day':
+                width = CELL_DAY_WIDTH;
+                break;
+            case 'month':
+                width = CELL_MONTH_WIDTH;
+                break;
+            default:
+                throw Error('Width doesn`t exist');
         }
         return (
-            <div className='gantt gantt-area__wrapper' style={{width:0,order:2}}>
+            <div className='gantt gantt-area__wrapper' style={{width: 0, order: 2}}>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
-                    width={width*scale}
+                    width={width * scale}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
@@ -85,7 +91,7 @@ class GanttArea extends Component {
                 <GanttGrid
                     zoom={zoom}
                     scale={scale}
-                    width={width*scale}
+                    width={width * scale}
                     tasks={tasks}
                     daysInMonth={this.daysInMonth}
                     calcMonthsNumber={this.calcMonthsNumber}
@@ -97,7 +103,7 @@ class GanttArea extends Component {
                     daysInMonth={this.daysInMonth}
                     scale={scale}
                     zoom={zoom}
-                    width={width*scale}
+                    width={width * scale}
                     tasks={tasks}
                     interval={interval}
                 />
