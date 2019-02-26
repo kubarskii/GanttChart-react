@@ -29,9 +29,10 @@ export default class GanttTasksLayer extends Component {
             case 'day':
                 return Math.floor(((timestamp - begin) / 1000 / 60 / 60 / 24));
             case 'month':
-                //Month quantity before
                 const monthBefore = this.props.calcMonthsNumber(new Date(begin), new Date(timestamp)).length - 1;
-                const monthsQ = this.props.daysInMonth(new Date(timestamp).getFullYear(), new Date(timestamp).getMonth())[0] + 1;
+                const monthsQ = this.props.daysInMonth(new Date(timestamp).getFullYear(), new Date(timestamp).getMonth())[0];
+                console.log(monthBefore, monthsQ, ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ))
+
                 return monthBefore + ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ);
             default:
                 return 1;
@@ -45,9 +46,10 @@ export default class GanttTasksLayer extends Component {
                 return length / 1000 / 60 / 60 / 24 + 1;
             case 'month':
                 const convert = 1000 * 60 * 60 * 24;
-                const monthLenghtB = this.props.daysInMonth(new Date(begin).getFullYear(), new Date(begin).getMonth())[0] + 1;
+                const monthLengthB = this.props.daysInMonth(new Date(begin).getFullYear(), new Date(begin).getMonth())[0];
                 const daysBeginning = Math.ceil((begin - this.calcMonthBegin(begin)) / convert);
                 const daysEnding = Math.floor((this.calcMonthEnd(end) - end - 1) / convert);
+
                 const interval = this.props.createInterval(
                     [{
                         begin: new Date(begin),
@@ -57,7 +59,8 @@ export default class GanttTasksLayer extends Component {
                 interval.last = interval.last.getMonth();
 
                 interval.difference = interval.last - interval.first;
-                return (interval.difference + (monthLenghtB - daysEnding) / monthLenghtB - daysBeginning / monthLenghtB);
+
+                return (interval.difference + (monthLengthB - daysEnding) / monthLengthB - daysBeginning / monthLengthB);
             default:
                 return 1;
         }

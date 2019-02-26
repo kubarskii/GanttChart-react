@@ -1,6 +1,7 @@
 .gantt{
-  /*
-  display: inline-block;
-  */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
   vertical-align: top;
 }

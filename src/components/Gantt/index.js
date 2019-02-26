@@ -21,9 +21,9 @@ class Gantt extends Component {
             {
                 id: '1',
                 type: 'task',
-                name: 'Планирование',
-                begin: new Date(2020, 1, 29),
-                end: new Date(2020, 2, 16),
+                name: 'Уровни задач',
+                begin: new Date(2019, 1, 26),
+                end: new Date(2019, 2, 10),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -31,9 +31,9 @@ class Gantt extends Component {
             {
                 id: '2',
                 type: 'task',
-                name: 'Что-то',
-                begin: new Date(2020, 1, 1),
-                end: new Date(2020, 2, 16),
+                name: 'Прогресс задач',
+                begin: new Date(2019, 2, 11),
+                end: new Date(2019, 2, 30),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -41,9 +41,9 @@ class Gantt extends Component {
             {
                 id: '3',
                 type: 'task',
-                name: 'Планирование',
-                begin: new Date(2020, 0, 1),
-                end: new Date(2020, 1, 29),
+                name: 'Редакс CRUD',
+                begin: new Date(2019, 3, 1),
+                end: new Date(2019, 3, 20),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -51,9 +51,9 @@ class Gantt extends Component {
             {
                 id: '4',
                 type: 'task',
-                name: 'Еще что-то',
-                begin: new Date(2020, 1, 1),
-                end: new Date(2020, 2, 31),
+                name: 'Модальное создание задачи',
+                begin: new Date(2019, 3, 21),
+                end: new Date(2019, 3, 30),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -61,9 +61,9 @@ class Gantt extends Component {
             {
                 id: '5',
                 type: 'task',
-                name: 'Еще что-то',
-                begin: new Date(2020, 0, 1),
-                end: new Date(2020, 1, 15),
+                name: 'Создание связей',
+                begin: new Date(2019, 4, 1),
+                end: new Date(2019, 5, 1),
                 progress: 10,
                 links: [],
                 level: 1,
@@ -71,6 +71,8 @@ class Gantt extends Component {
         ],
         scale: 1,
     };
+
+    //addTask - Mock function
 
     addTask = (e) => {
         const level = Number(e.target.getAttribute('data-level'));
@@ -90,7 +92,6 @@ class Gantt extends Component {
 
     zoomIn = () => {
         this.setState({scale: this.state.scale * 1.5});
-        console.log(this.state.scale);
     };
 
     zoomOut = () => {
@@ -111,15 +112,17 @@ class Gantt extends Component {
     getRef = (node) => {
         return this._GanttDivider = node
     };
+    getRefWrapper = (node) => {
+        return this._GanttWrapper = node
+    };
 
     moveTo = (e, devider) => {
         devider.ondragstart = () => {
             return false;
         };
         devider.style.position = 'absolute';
-        if((e.pageX - devider.offsetWidth / 2 > 13)&&(e.pageX - devider.offsetWidth / 2 < document.body.clientWidth-15)){
+        if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 15)) {
             devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
-            console.log(document.body.clientWidth, devider.style.left, e.pageX / (document.body.clientWidth));
             this.setState({divider: parseInt(devider.style.left)})
         }
 
@@ -141,6 +144,15 @@ class Gantt extends Component {
         divider.onmouseup = null;
     };
 
+    onMouseLeave = (e) => {
+        const divider = ReactDOM.findDOMNode(this._GanttDivider);
+        const wrapper = ReactDOM.findDOMNode(this._GanttWrapper);
+        wrapper.onmouseleave = () =>
+        document.onmousemove = null;
+        document.onmouseup = null;
+        divider.onmousemove = null;
+    };
+
     render() {
         return (
             <div>
@@ -152,13 +164,14 @@ class Gantt extends Component {
                         zoomOut={this.zoomOut}
                     />
                 </div>
-                <div style={{display: 'flex'}}>
+                <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
                     <GanttControl
                         divider={this.state.divider}
                         tasks={this.state.tasks}
                         addTask={this.addTask}
                     />
-                    <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} divider={this.state.divider}/>
+                    <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
+                                  divider={this.state.divider}/>
                     <GanttArea
                         divider={this.state.divider}
                         zoom={this.state.zoom}
