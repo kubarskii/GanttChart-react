@@ -11,7 +11,7 @@ class GanttControl extends Component {
 
         const {tasks, addTask, divider} = this.props;
         return (
-            <div className='gantt gantt-control__wrapper' style={{width:`${divider-15}px`, order:1}}>
+            <div className='gantt gantt-control__wrapper' style={{width:`${divider-12}px`, order:1}}>
                 <GanttControlHead
                     addTask={addTask}
                 />

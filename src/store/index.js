@@ -1,13 +1,10 @@
-import {
-    createStore,
-    combineReducers,
-    applyMiddleware,
-    compose
-} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-const rootReducer = combineReducers({
+import ganttTasks from '../reducers/ganttTasksReducer'
 
+const rootReducer = combineReducers({
+    ganttTasks,
 });
 
 const store = createStore(

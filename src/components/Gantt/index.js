@@ -12,83 +12,30 @@ class Gantt extends Component {
 
     }
 
-    //TODO get tasks from Redux store
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
         divider: 464,
         zoom: 'month',
-        tasks: [
-            {
-                id: '1',
-                type: 'task',
-                name: 'Уровни задач',
-                begin: new Date(2019, 1, 26),
-                end: new Date(2019, 2, 10),
-                progress: 10,
-                links: [],
-                level: 1,
-            },
-            {
-                id: '2',
-                type: 'task',
-                name: 'Прогресс задач',
-                begin: new Date(2019, 2, 11),
-                end: new Date(2019, 2, 30),
-                progress: 10,
-                links: [],
-                level: 1,
-            },
-            {
-                id: '3',
-                type: 'task',
-                name: 'Редакс CRUD',
-                begin: new Date(2019, 3, 1),
-                end: new Date(2019, 3, 20),
-                progress: 10,
-                links: [],
-                level: 1,
-            },
-            {
-                id: '4',
-                type: 'task',
-                name: 'Модальное создание задачи',
-                begin: new Date(2019, 3, 21),
-                end: new Date(2019, 3, 30),
-                progress: 10,
-                links: [],
-                level: 1,
-            },
-            {
-                id: '5',
-                type: 'task',
-                name: 'Создание связей',
-                begin: new Date(2019, 4, 1),
-                end: new Date(2019, 5, 1),
-                progress: 10,
-                links: [],
-                level: 1,
-            },
-        ],
         scale: 1,
     };
 
     //addTask - Mock function
 
-    addTask = (e) => {
-        const level = Number(e.target.getAttribute('data-level'));
-        const newTask = {
-            id: '123',
-            name: 'Спринт 2',
-            begin: new Date(2019, 6, 11),
-            end: new Date(2019, 6, 20),
-            progress: 10,
-            links: [],
-            level: level,
-        };
-        const tasks = this.state.tasks;
-        tasks.push(newTask);
-        this.setState({tasks: tasks});
-    };
+    /*    addTask = (e) => {
+            const level = Number(e.target.getAttribute('data-level'));
+            const newTask = {
+                id: '123',
+                name: 'Спринт 2',
+                begin: new Date(2019, 6, 11),
+                end: new Date(2019, 6, 20),
+                progress: 10,
+                links: [],
+                level: level,
+            };
+            const tasks = this.state.tasks;
+            tasks.push(newTask);
+            this.setState({tasks: tasks});
+        };*/
 
     zoomIn = () => {
         this.setState({scale: this.state.scale * 1.5});
@@ -114,6 +61,9 @@ class Gantt extends Component {
     };
     getRefWrapper = (node) => {
         return this._GanttWrapper = node
+    };
+    getGanttAreaRef = (node) => {
+        return this._GanttArea = node
     };
 
     moveTo = (e, devider) => {
@@ -148,38 +98,80 @@ class Gantt extends Component {
         const divider = ReactDOM.findDOMNode(this._GanttDivider);
         const wrapper = ReactDOM.findDOMNode(this._GanttWrapper);
         wrapper.onmouseleave = () =>
-        document.onmousemove = null;
+            document.onmousemove = null;
         document.onmouseup = null;
         divider.onmousemove = null;
     };
 
+
+    //TODO Stick mouse drag to dates
+    //TODO Update state (tasks)
+    //TODO small fixes for dnd
+
+    taskMouseDown = (e) => {
+        const task = e.target;
+        const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
+
+        task.ondragstart = () => {
+            return false;
+        };
+
+        const dividerWidth = this.state.divider;
+        document.onmousemove = function (e) {
+            task.parentNode.style.left = (e.pageX - (dividerWidth + task.offsetWidth / 2 - ganttArea.scrollLeft)) + 'px';
+        };
+        task.parentNode.style.left = e.pageX - (dividerWidth + task.offsetWidth / 2 - ganttArea.scrollLeft) + 'px';
+        /*this.setState({divider: parseInt(task.style.left)})*/
+    };
+    taskMouseUp = (e) => {
+        document.onmousemove = null;
+    };
+
+    taskMouseLeave = (e) => {
+        document.onmousemove = null;
+    };
+
     render() {
+        const {tasks, isLoading} = this.props;
+
+        if (isLoading) {
+            console.log('isLoading true', tasks);
+        } else {
+            console.log('isLoading false', tasks);
+        }
+
         return (
-            <div>
+            !isLoading ?
                 <div>
-                    <GanttTools
-                        toDay={this.toDay}
-                        toMonth={this.toMonth}
-                        zoomIn={this.zoomIn}
-                        zoomOut={this.zoomOut}
-                    />
+                    <div style={{height: '30px'}}>
+                        <GanttTools
+                            toDay={this.toDay}
+                            toMonth={this.toMonth}
+                            zoomIn={this.zoomIn}
+                            zoomOut={this.zoomOut}
+                        />
+                    </div>
+                    <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
+                        <GanttControl
+                            divider={this.state.divider}
+                            tasks={tasks}
+                            addTask={this.addTask}
+                        />
+                        <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
+                                      divider={this.state.divider}/>
+                        <GanttArea
+                            ref={this.getGanttAreaRef}
+                            onMouseDown={this.taskMouseDown}
+                            onMouseUp={this.taskMouseUp}
+                            onMouseLeave={this.taskMouseLeave}
+                            divider={this.state.divider}
+                            zoom={this.state.zoom}
+                            scale={this.state.scale}
+                            tasks={tasks}
+                        />
+                    </div>
                 </div>
-                <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
-                    <GanttControl
-                        divider={this.state.divider}
-                        tasks={this.state.tasks}
-                        addTask={this.addTask}
-                    />
-                    <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
-                                  divider={this.state.divider}/>
-                    <GanttArea
-                        divider={this.state.divider}
-                        zoom={this.state.zoom}
-                        scale={this.state.scale}
-                        tasks={this.state.tasks}
-                    />
-                </div>
-            </div>
+                : <div>Loading...</div>
         );
     }
 
