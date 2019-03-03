@@ -1,13 +1,18 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
+import {withRouter} from "react-router-dom";
+
 import MainPageComponent from '../../components/MainPageComponent/index';
 
-export default class MainPageContainer extends Component{
+class MainPageContainer extends Component {
     //Contains projects
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <MainPageComponent/>
             </div>
         );
     }
 }
+
+
+export default withRouter(MainPageComponent);

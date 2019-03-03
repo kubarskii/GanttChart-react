@@ -31,14 +31,13 @@ export default class GanttTasksLayer extends Component {
             case 'month':
                 const monthBefore = this.props.calcMonthsNumber(new Date(begin), new Date(timestamp)).length - 1;
                 const monthsQ = this.props.daysInMonth(new Date(timestamp).getFullYear(), new Date(timestamp).getMonth())[0];
-                console.log(monthBefore, monthsQ, ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ))
-
                 return monthBefore + ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ);
             default:
                 return 1;
         }
 
     };
+
     calcWidth = (begin, end) => {
         const length = (end - this.calcBegin()) - (begin - this.calcBegin());
         switch (this.props.zoom) {
@@ -86,6 +85,9 @@ export default class GanttTasksLayer extends Component {
                 {tasks.map((task, i) => (
                     <div className='gantt-one-task__wrapper' key={i} style={{top: '0'}}>
                         <div className={'gantt-one-task__task'}
+                             onMouseDown={this.props.onMouseDown}
+                             onMouseUp={this.props.onMouseUp}
+                             onMouseLeave = {this.props.onMouseLeave}
                              data-task-id={task.id}
                              style={{
                                  width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end))}px`,

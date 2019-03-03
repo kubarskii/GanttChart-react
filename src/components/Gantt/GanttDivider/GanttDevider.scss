@@ -1,9 +1,29 @@
-.devider{
-  width: 6px;
-  background: #ccc;
+.divider{
+  width: 7px;
+  background: #e9e9e9;
+  border: 1px solid darkgrey;
   cursor: ew-resize;
   left: 30%;
   height: calc(100% - 30px);
   position: absolute;
-  z-index: 10000 !important;
+  z-index: 1 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover{
+    background: darken(#dedede, 10);
+    border: 1px solid darken(darkgrey, 10);
+  }
+
+}
+.dots-wrapper{
+
+}
+
+.round-dot{
+  margin: 4px 0 0 0;
+  width: 4px;
+  height: 4px;
+  background: #2ba3d6;
+  border-radius: 50%;
 }

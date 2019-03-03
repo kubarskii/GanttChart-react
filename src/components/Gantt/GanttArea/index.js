@@ -98,6 +98,9 @@ class GanttArea extends Component {
                     interval={interval}
                 />
                 <GanttTasksLayer
+                    onMouseDown = {this.props.onMouseDown}
+                    onMouseUp = {this.props.onMouseUp}
+                    onMouseLeave = {this.props.onMouseLeave}
                     createInterval={this.createInterval}
                     calcMonthsNumber={this.calcMonthsNumber}
                     daysInMonth={this.daysInMonth}

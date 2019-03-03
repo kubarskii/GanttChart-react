@@ -6,7 +6,14 @@ export default class GanttDevider extends Component {
     render() {
         const {onMouseDown, onMouseUp} = this.props;
         return (
-            <div className='devider' onMouseDown={onMouseDown} onMouseUp={onMouseUp}></div>
+            <div className='divider' onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+                <div className='dots-wrapper'>
+                    <div className='round-dot'></div>
+                    <div className='round-dot'></div>
+                    <div className='round-dot'></div>
+                    <div className='round-dot'></div>
+                </div>
+            </div>
         );
     }
 
