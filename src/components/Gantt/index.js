@@ -136,6 +136,10 @@ class Gantt extends Component {
         };
     };
 
+    highlightRow = (e) =>{
+        //TODO if clicked on task highlight all the row
+    };
+
     render() {
         const {tasks, isLoading} = this.props;
 
@@ -154,7 +158,7 @@ class Gantt extends Component {
                         <GanttControl
                             divider={this.state.divider}
                             tasks={tasks}
-                            addTask={this.addTask}
+                            addTask={this.props.addTask}
                         />
                         <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
                                       divider={this.state.divider}/>

@@ -6,12 +6,12 @@ export default class GanttControlHead extends Component {
         const {addTask} = this.props;
         return (
             <div className='gantt-control-head__wrapper'>
-                <div>Название</div>
-                <div>Начало</div>
-                <div>Конец</div>
-                <div>Длительнотсь</div>
-                <div>Ответственный</div>
-                <div className='gantt-control-task button-add-task' onClick={addTask} data-level="1">+</div>
+                <div>Name</div>
+                <div>Beginning</div>
+                <div>End</div>
+                <div>Duration</div>
+                <div>Responsible</div>
+                <div className='gantt-control-task button-add-task' onClick={this.props.openModal} data-level="1">+</div>
             </div>
         );
     };

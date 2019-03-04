@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
+import {monthEngNames} from '../../../../constants/monthsNames'
 import '../../GanttStyles.scss';
 import './GanttScaleLine.scss'
 
-
-const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
-];
+const monthNames = monthEngNames;
 
 export default class GanttScaleLine extends Component {
 
@@ -15,9 +13,11 @@ export default class GanttScaleLine extends Component {
 
 
     render() {
+
+
+
         const {first, last} = this.props.interval;
         const {width, zoom} = this.props;
-
         return (
             <div className='gantt-scale-line__wrapper'>
                 {zoom === 'month' ?
