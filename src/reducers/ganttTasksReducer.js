@@ -20,9 +20,7 @@ const ganttTasksReducer = (
         isError
     }
 ) => {
-
     switch (type) {
-
         case FETCH_GANTT_TASKS_REQUEST :
             return {
                 ...state,

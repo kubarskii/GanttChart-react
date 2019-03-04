@@ -8,8 +8,8 @@ export default class GanttTools extends Component {
             <div style={{display:'flex', flexDirection: 'row',position:'fixed'}}>
                 <button onClick={zoomIn}>+</button>
                 <button onClick={zoomOut}>-</button>
-                <button onClick={toDay}>День</button>
-                <button onClick={toMonth}>Месяц</button>
+                <button onClick={toDay}>Day</button>
+                <button onClick={toMonth}>Month</button>
             </div>
 
         );

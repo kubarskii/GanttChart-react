@@ -54,48 +54,48 @@ export default class HeaderContainer extends Component {
                                  style={{background: 'inherit', padding: '0 8px', zIndex: '1'}} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem>
-                                <MDBNavLink to="/">Проекты</MDBNavLink>
+                                <MDBNavLink to="/">Projects</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/boards">Доски</MDBNavLink>
+                                <MDBNavLink to="/boards">Boards</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/analytics">Аналитика</MDBNavLink>
+                                <MDBNavLink to="/analytics">Analytics</MDBNavLink>
                             </MDBNavItem>
 
                             <MDBNavItem>
                                 <MDBDropdown>
                                     <MDBDropdownToggle nav caret>
-                                        <div className="d-none d-md-inline">Проекты</div>
+                                        <div className="d-none d-md-inline">Projects</div>
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" right>
-                                        <MDBDropdownItem>Здесь будут проекты последние</MDBDropdownItem>
+                                        <MDBDropdownItem>Last visited projects...</MDBDropdownItem>
                                         <hr/>
-                                        <MDBDropdownItem>Все проекты</MDBDropdownItem>
+                                        <MDBDropdownItem>All projects</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
                                     <MDBDropdownToggle nav caret>
-                                        <div className="d-none d-md-inline">Доски</div>
+                                        <div className="d-none d-md-inline">Boards</div>
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" right>
-                                        <MDBDropdownItem>Здесь будут доски последние</MDBDropdownItem>
+                                        <MDBDropdownItem>Last visited boards</MDBDropdownItem>
                                         <hr/>
-                                        <MDBDropdownItem>Все доски</MDBDropdownItem>
+                                        <MDBDropdownItem>All boards</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <ButtonToolbar>
-                                    <Button size="sm" variant="success" onClick={this.handleClickOpen}>Создать</Button>
+                                    <Button size="sm" variant="success" onClick={this.handleClickOpen}>Create</Button>
                                 </ButtonToolbar>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <div className="md-form my-0 header-nav-md-form">
-                                <input className="form-control header-nav-input" type="text" placeholder="Поиск"
+                                <input className="form-control header-nav-input" type="text" placeholder="Search"
                                        aria-label="Search"/>
                             </div>
                             <MDBNavItem>
@@ -105,8 +105,8 @@ export default class HeaderContainer extends Component {
                                              style={{height: "35px", padding: 0}} alt=""/>
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" right>
-                                        <MDBDropdownItem href="#!">Профиль</MDBDropdownItem>
-                                        <MDBDropdownItem href="#!">Выйти</MDBDropdownItem>
+                                        <MDBDropdownItem href="#!">Profile</MDBDropdownItem>
+                                        <MDBDropdownItem href="#!">Exit</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>

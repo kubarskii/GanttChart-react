@@ -13,13 +13,13 @@
     color: #fff;
   }
 
-  &__task {
+  &__task{
     background: #2196f3;
     position: absolute;
     height: 24px;
     margin-top: 6px;
 
-    :before {
+ /*   :before {
       content: '';
       display: block;
       border-style: solid;
@@ -40,7 +40,7 @@
       position: absolute;
       right: 0;
 
-    }
+    }*/
   }
 
   &__task-text {

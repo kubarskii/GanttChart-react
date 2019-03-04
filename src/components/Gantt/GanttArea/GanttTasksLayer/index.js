@@ -87,13 +87,26 @@ export default class GanttTasksLayer extends Component {
                         <div className={'gantt-one-task__task'}
                              onMouseDown={this.props.onMouseDown}
                              onMouseUp={this.props.onMouseUp}
-                             onMouseLeave = {this.props.onMouseLeave}
+                             onClick={this.props.highlightRow}
+                             onMouseLeave={this.props.onMouseLeave}
                              data-task-id={task.id}
                              style={{
                                  width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end))}px`,
                                  left: `${width * scale * this.calcMargin(Date.parse(task.begin))}px`
                              }}>
-                            <div className='gantt-one-task__task-text'>{`${task.name}`}</div>
+                            <div className='task__progress' style={{
+                                position: 'absolute',
+                                color: 'white',
+                                fontSize: '11px',
+                                lineHeight: '11px',
+                                background: 'darkblue',
+                                width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end)) * (task.progress/100)}px`,
+                                height: '4px',
+                                bottom: '0'
+                            }}>
+                                {/**/}
+                            </div>
+                            <div className='gantt-one-task__task-text' style={{position: 'absolute', zIndex: 10, width:'100%', height: '100%'}}>{`${task.name} ${task.progress}%`}</div>
                         </div>
                     </div>
                 ))}
