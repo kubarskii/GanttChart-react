@@ -97,10 +97,13 @@ class Gantt extends Component {
     onMouseLeave = (e) => {
         const divider = ReactDOM.findDOMNode(this._GanttDivider);
         const wrapper = ReactDOM.findDOMNode(this._GanttWrapper);
-        wrapper.onmouseleave = () =>
-            document.onmousemove = null;
-        document.onmouseup = null;
-        divider.onmousemove = null;
+        wrapper.onmouseleave = () => {
+            document.onmouseup = () => {
+                document.onmousemove = null;
+                divider.onmousemove = null;
+
+            };
+        }
     };
 
 
@@ -128,17 +131,13 @@ class Gantt extends Component {
     };
 
     taskMouseLeave = (e) => {
-        document.onmousemove = null;
+        document.onmouseup = () => {
+            document.onmousemove = null;
+        };
     };
 
     render() {
         const {tasks, isLoading} = this.props;
-
-        if (isLoading) {
-            console.log('isLoading true', tasks);
-        } else {
-            console.log('isLoading false', tasks);
-        }
 
         return (
             !isLoading ?
