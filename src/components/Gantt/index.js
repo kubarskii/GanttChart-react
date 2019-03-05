@@ -14,7 +14,7 @@ class Gantt extends Component {
 
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
-        divider: 464,
+        divider: document.body.offsetWidth/2,
         zoom: 'month',
         scale: 1,
     };
@@ -115,6 +115,12 @@ class Gantt extends Component {
         const task = e.target;
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
 
+
+        ganttArea.ondragstart = () => {
+            console.log('ganttArea dragging');
+            return false;
+        };
+
         task.ondragstart = () => {
             return false;
         };
@@ -136,7 +142,7 @@ class Gantt extends Component {
         };
     };
 
-    highlightRow = (e) =>{
+    highlightRow = (e) => {
         //TODO if clicked on task highlight all the row
     };
 
