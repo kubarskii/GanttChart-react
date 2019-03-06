@@ -15,7 +15,6 @@ export default class GanttScaleLine extends Component {
     render() {
 
 
-
         const {first, last} = this.props.interval;
         const {width, zoom} = this.props;
         return (
@@ -45,7 +44,7 @@ export default class GanttScaleLine extends Component {
                      key={i}
                      style={{
                          width: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
-                         background: (i % 2 > 0) ? '#d8f5ff' : 'none'
+                         background: (i % 2 > 0) ? '#cccccc45' : 'none'
                      }}>
                     <div>{`${monthNames[month.month]} ${month.year}`}</div>
                 </div>
@@ -59,9 +58,11 @@ export default class GanttScaleLine extends Component {
             <div className='gantt-scale-line__day-line' style={{}}>
                 {this.props.calcMonthsNumber(first, last).map((month, i) => (
                     this.props.daysInMonth(month.year, month.month).map((day, i) =>
+
                         <div className='gantt gantt-scale-line__day-wrapper' key={i}
                              style={{width: `${width}px`,}}>
-                            <div className='gantt-scale-line__day'>{day}</div>
+                            <div
+                                className={`${'gantt-scale-line__day ' + this.isWeekend(new Date(month.year, month.month, day - 1).getDay())}`}>{day}</div>
                         </div>
                     )
                 ))}
@@ -69,6 +70,9 @@ export default class GanttScaleLine extends Component {
         );
     };
 
+    isWeekend = (day) => {
+        return (day === 6 || day === 5) ? 'weekend' : '';
+    };
 
     renderYear = (first, last, width) => {
         return (
