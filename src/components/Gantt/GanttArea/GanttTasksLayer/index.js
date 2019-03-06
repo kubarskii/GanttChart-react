@@ -99,10 +99,10 @@ export default class GanttTasksLayer extends Component {
                                 color: 'white',
                                 fontSize: '11px',
                                 lineHeight: '11px',
-                                background: 'darkblue',
+                                background: 'black',
                                 width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end)) * (task.progress/100)}px`,
                                 height: '4px',
-                                bottom: '0'
+                                top: '0'
                             }}>
                                 {/**/}
                             </div>

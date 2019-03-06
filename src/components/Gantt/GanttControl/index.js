@@ -14,17 +14,19 @@ class GanttControl extends Component {
         const {tasks, addTask, divider, getTaskData, handleOpenModal, handleClose, modalOpened, modalData} = this.props;
         return (
             <div className='gantt gantt-control__wrapper' style={{width: `${divider - 12}px`, order: 1}}>
-                <GanttControlHead
-                    addTask={addTask}
-                    openModal={handleOpenModal}
-                    getTaskData={getTaskData}
-                />
-                <GanttControlTasks
-                    tasks={tasks}
-                    addTask={addTask}
-                    openModal={handleOpenModal}
-                    getTaskData={getTaskData}
-                />
+                <div style={{width: '1000px', overflowX: 'auto'}}>
+                    <GanttControlHead
+                        addTask={addTask}
+                        openModal={handleOpenModal}
+                        getTaskData={getTaskData}
+                    />
+                    <GanttControlTasks
+                        tasks={tasks}
+                        addTask={addTask}
+                        openModal={handleOpenModal}
+                        getTaskData={getTaskData}
+                    />
+                </div>
                 <Modal
                     modalData={modalData}
                     open={modalOpened}

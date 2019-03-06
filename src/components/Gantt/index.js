@@ -62,7 +62,7 @@ class Gantt extends Component {
             return false;
         };
         devider.style.position = 'absolute';
-        if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 15)) {
+        if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 13)) {
             devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
             this.setState({divider: parseInt(devider.style.left)})
         }
