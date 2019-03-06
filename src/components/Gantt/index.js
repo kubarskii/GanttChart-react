@@ -62,7 +62,7 @@ class Gantt extends Component {
             return false;
         };
         devider.style.position = 'absolute';
-        if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 15)) {
+        if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 13)) {
             devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
             this.setState({divider: parseInt(devider.style.left)})
         }
@@ -114,7 +114,6 @@ class Gantt extends Component {
                 return false;
             };
 
-
             console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
             const getCoords = this.getCoords;
             task.ondragstart = () => {
@@ -128,26 +127,6 @@ class Gantt extends Component {
                 task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
             };
             task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
-
-=======
-        if (e.button === 0) {
-            ganttArea.ondragstart = () => {
-                return false;
-            };
-
-            console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
-            const getCoords = this.getCoords;
-            task.ondragstart = () => {
-                return false;
-            };
-
-            const shiftX = e.pageX-getCoords(task).left+3;
-
-            const dividerWidth = this.state.divider;
-            document.onmousemove = function (e) {
-                task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
-            };
-            task.parentNode.style.left = e.pageX - (dividerWidth  + shiftX - ganttArea.scrollLeft) + 'px';
 
         }
     };
