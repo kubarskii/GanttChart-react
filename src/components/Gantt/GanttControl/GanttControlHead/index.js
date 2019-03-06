@@ -3,7 +3,7 @@ import './GanttControlHead.scss';
 
 export default class GanttControlHead extends Component {
     render() {
-        const {addTask} = this.props;
+        const {addTask, getTaskData} = this.props;
         return (
             <div className='gantt-control-head__wrapper'>
                 <div>Name</div>
