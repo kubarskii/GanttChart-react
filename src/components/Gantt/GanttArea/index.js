@@ -65,7 +65,7 @@ class GanttArea extends Component {
     };
 
     render() {
-        const {tasks, scale, zoom} = this.props;
+        const {tasks, scale, zoom, getTaskData} = this.props;
         const interval = this.createInterval();
         let width;
         switch (zoom) {
@@ -109,6 +109,7 @@ class GanttArea extends Component {
                     width={width * scale}
                     tasks={tasks}
                     interval={interval}
+                    getTaskData={getTaskData}
                 />
                 <GanttLinksLayer/>
 

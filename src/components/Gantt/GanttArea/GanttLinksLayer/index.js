@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 
-export default class GanttLinksLayer extends Component{
+export default class GanttLinksLayer extends Component {
 
     render() {
-        return(
-            <div></div>
+        return (
+            <div>
+
+
+            </div>
         );
     }
 

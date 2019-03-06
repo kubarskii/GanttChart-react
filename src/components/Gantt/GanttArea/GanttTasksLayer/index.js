@@ -54,10 +54,12 @@ export default class GanttTasksLayer extends Component {
                         begin: new Date(begin),
                         end: new Date(end)
                     }]);
-                interval.first = interval.first.getMonth();
-                interval.last = interval.last.getMonth();
-
-                interval.difference = interval.last - interval.first;
+                interval.firstMonth = interval.first.getMonth();
+                interval.lastMonth = interval.last.getMonth();
+                interval.firstYear = interval.first.getFullYear();
+                interval.lastYear = interval.last.getFullYear();
+                interval.yearDifference = interval.lastYear - interval.firstYear;
+                interval.difference = interval.lastMonth - interval.firstMonth + (interval.yearDifference * 12);
 
                 return (interval.difference + (monthLengthB - daysEnding) / monthLengthB - daysBeginning / monthLengthB);
             default:
@@ -68,7 +70,7 @@ export default class GanttTasksLayer extends Component {
 
 
     render() {
-        const {tasks, zoom, scale} = this.props;
+        const {tasks, zoom, scale, getTaskData} = this.props;
         let width;
         switch (zoom) {
             case 'day':
@@ -88,6 +90,7 @@ export default class GanttTasksLayer extends Component {
                              onMouseDown={this.props.onMouseDown}
                              onMouseUp={this.props.onMouseUp}
                              onClick={this.props.highlightRow}
+                             onDoubleClick={getTaskData}
                              onMouseLeave={this.props.onMouseLeave}
                              data-task-id={task.id}
                              style={{
@@ -100,13 +103,18 @@ export default class GanttTasksLayer extends Component {
                                 fontSize: '11px',
                                 lineHeight: '11px',
                                 background: 'black',
-                                width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end)) * (task.progress/100)}px`,
+                                width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end)) * (task.progress / 100)}px`,
                                 height: '4px',
                                 top: '0'
                             }}>
                                 {/**/}
                             </div>
-                            <div className='gantt-one-task__task-text' style={{position: 'absolute', zIndex: 10, width:'100%', height: '100%'}}>{`${task.name} ${task.progress}%`}</div>
+                            <div className='gantt-one-task__task-text' style={{
+                                position: 'absolute',
+                                zIndex: 10,
+                                width: '100%',
+                                height: '100%'
+                            }}>{`${task.name} ${task.progress}%`}</div>
                         </div>
                     </div>
                 ))}

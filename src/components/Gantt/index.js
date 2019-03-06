@@ -160,17 +160,10 @@ class Gantt extends Component {
 
     getTaskData = (e) => {
         const task = e.target.parentNode;
-        const taskDetails = {
-            id: task.getAttribute('data-task-id'),
-            type: 'task',
-            name: e.target.parentNode.childNodes[0].innerText,
-            begin: this.converteStringToDate(e.target.parentNode.childNodes[1].innerText),
-            end: this.converteStringToDate(e.target.parentNode.childNodes[2].innerText),
-            progress: task.getAttribute('data-task-progress'),
-            links: [],
-            level: task.getAttribute('data-task-level'),
-        };
-        console.log(taskDetails, task);
+        const taskId = task.getAttribute('data-task-id');
+        let obj =
+        console.log(obj);
+        const taskDetails = this.props.tasks.find(obj => obj.id == taskId);
         this.setState({taskData: taskDetails});
         this.handleOpenModal();
     };
@@ -212,6 +205,7 @@ class Gantt extends Component {
                             zoom={this.state.zoom}
                             scale={this.state.scale}
                             tasks={tasks}
+                            getTaskData={this.getTaskData}
                         />
                     </div>
                 </div>
