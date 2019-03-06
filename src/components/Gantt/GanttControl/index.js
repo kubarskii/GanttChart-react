@@ -8,34 +8,29 @@ import '../GanttStyles.scss';
 
 class GanttControl extends Component {
 
-    state = {
-        open: false,
-    };
-
-    handleClose = () => {
-        this.setState({open: false});
-    };
-    handleOpenModal = () => {
-        this.setState({open: true});
-    };
 
     render() {
 
-        const {tasks, addTask, divider} = this.props;
+        const {tasks, addTask, divider, getTaskData, handleOpenModal, handleClose, modalOpened, modalData} = this.props;
         return (
             <div className='gantt gantt-control__wrapper' style={{width: `${divider - 12}px`, order: 1}}>
                 <GanttControlHead
                     addTask={addTask}
-                    openModal={this.handleOpenModal}
+                    openModal={handleOpenModal}
+                    getTaskData={getTaskData}
                 />
                 <GanttControlTasks
                     tasks={tasks}
                     addTask={addTask}
-                    openModal = {this.handleOpenModal}
+                    openModal={handleOpenModal}
+                    getTaskData={getTaskData}
                 />
                 <Modal
-                    open={this.state.open}
-                    handleClose={this.handleClose}
+                    modalData={modalData}
+                    open={modalOpened}
+                    handleClose={handleClose}
+                    title='Edit task'
+                    data={getTaskData}
                 />
             </div>
         );
