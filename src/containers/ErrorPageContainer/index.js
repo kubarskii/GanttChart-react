@@ -7,7 +7,6 @@ import {fetchGanttTasks, ganttTasksChange} from "../../actions/ganttTasks/ganttT
 class MainPageContainer extends Component {
 
     componentWillMount() {
-        //TODO fetchApplication
         this.props.fetchGanttTasks();
     }
 

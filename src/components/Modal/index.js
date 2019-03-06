@@ -41,7 +41,7 @@ class Modal extends Component {
     };
 
     render() {
-        const {open, handleClose} = this.props;
+        const {open, handleClose, title} = this.props;
 
         return (
             <React.Fragment>
@@ -52,7 +52,7 @@ class Modal extends Component {
                     onClose={handleClose}
                     aria-labelledby="max-width-dialog-title"
                 >
-                    <DialogTitle id="max-width-dialog-title">Создание проекта</DialogTitle>
+                    <DialogTitle id="max-width-dialog-title">{title}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             <ProjectForm/>
@@ -60,7 +60,7 @@ class Modal extends Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">
-                            Закрыть
+                            Close
                         </Button>
                     </DialogActions>
                 </Dialog>

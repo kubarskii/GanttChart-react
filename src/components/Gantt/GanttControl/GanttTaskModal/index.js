@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 
@@ -31,6 +29,17 @@ class Modal extends Component {
         maxWidth: 'xl',
     };
 
+    DEFAULT_TASK = {
+        id: 1,
+        type: 'task',
+        name: '',
+        begin: new Date(),
+        end: new Date(),
+        progress: 0,
+        links: [],
+        level: 0,
+    };
+
     handleMaxWidthChange = event => {
         this.setState({maxWidth: event.target.value});
     };
@@ -40,7 +49,12 @@ class Modal extends Component {
     };
 
     render() {
-        const {open, handleClose} = this.props;
+        let {open, handleClose, title, modalData} = this.props;
+
+        if (modalData === {}) {
+            modalData = this.DEFAULT_TASK;
+        }
+        ;
 
         return (
             <React.Fragment>
@@ -51,22 +65,28 @@ class Modal extends Component {
                     onClose={handleClose}
                     aria-labelledby="max-width-dialog-title"
                 >
-                    <DialogTitle id="max-width-dialog-title">Создание проекта</DialogTitle>
+                    <DialogTitle id="max-width-dialog-title">{title}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
 
-                            <form>
+                        <form>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.id} placeholder={''}/>
 
-                                <input type='text'/>
-                                <input type='text'/>
-                                <input type='text'/>
-                                <input type='text'/>
-                                <input type='text'/>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.type}/>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.name}/>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.begin}/>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.end}/>
+                            <input type='text' onChange={() => {
+                            }} value={modalData.progress}/>
+                            <input type='text' onChange={() => {
+                            }} value={Number(modalData.level) + 1}/>
 
+                        </form>
 
-                            </form>
-
-                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="secondary">
@@ -82,8 +102,5 @@ class Modal extends Component {
     }
 }
 
-Modal.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Modal);

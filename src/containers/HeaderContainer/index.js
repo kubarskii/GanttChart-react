@@ -47,7 +47,7 @@ export default class HeaderContainer extends Component {
             <div>
                 <MDBNavbar color="blue" dark expand="md" style={{padding: "0 10px", boxShadow: 'none', height: '40px'}}>
                     <MDBNavbarBrand>
-                        <strong className="white-text">{`<APM> | ${company}`}</strong>
+                        <strong className="white-text"><span style={{border:'1px solid white', borderRadius:'50%', padding:'5px', cursor:'pointer'}}>TiSCo</span>{` | ${company}`}</strong>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse("navBarCollapse")}/>
                     <MDBCollapse id="navBarCollapse" isOpen={this.state.collapseID}
@@ -115,6 +115,7 @@ export default class HeaderContainer extends Component {
                 </MDBNavbar>
                 <Modal open={this.state.open}
                        handleClose={this.handleClose}
+                       title='Create project'
                 />
             </div>
         );

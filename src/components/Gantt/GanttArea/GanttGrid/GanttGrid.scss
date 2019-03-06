@@ -1,7 +1,7 @@
 .gantt-grid {
   &__row {
     &:last-child {
-      & > .gantt-grid__cell{
+      & > .gantt-grid__cell {
         border-bottom: 1px solid #ccc;
       }
     }
@@ -12,5 +12,9 @@
     height: inherit;
     border-right: 1px solid #ccc;
 
+    &.weekend {
+      background: rgba(236, 221, 176, 0.31);
+
+    }
   }
 }

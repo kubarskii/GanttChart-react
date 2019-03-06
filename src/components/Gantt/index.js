@@ -14,28 +14,19 @@ class Gantt extends Component {
 
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
-        divider: document.body.offsetWidth/2,
-        zoom: 'month',
+        divider: document.body.offsetWidth / 2,
+        zoom: 'day',
         scale: 1,
+        open: false,
+        taskData: {},
     };
 
-    //addTask - Mock function
-
-    /*    addTask = (e) => {
-            const level = Number(e.target.getAttribute('data-level'));
-            const newTask = {
-                id: '123',
-                name: 'Спринт 2',
-                begin: new Date(2019, 6, 11),
-                end: new Date(2019, 6, 20),
-                progress: 10,
-                links: [],
-                level: level,
-            };
-            const tasks = this.state.tasks;
-            tasks.push(newTask);
-            this.setState({tasks: tasks});
-        };*/
+    handleClose = () => {
+        this.setState({open: false});
+    };
+    handleOpenModal = () => {
+        this.setState({open: true});
+    };
 
     zoomIn = () => {
         this.setState({scale: this.state.scale * 1.5});
@@ -115,22 +106,29 @@ class Gantt extends Component {
         const task = e.target;
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
 
+        if (e.button === 0) {
+            ganttArea.ondragstart = () => {
+                return false;
+            };
+            task.ondragstart = () => {
+                return false;
+            };
 
-        ganttArea.ondragstart = () => {
-            console.log('ganttArea dragging');
-            return false;
-        };
+            console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
+            const getCoords = this.getCoords;
+            task.ondragstart = () => {
+                return false;
+            };
+//TODO Why 3 px
+            const shiftX = e.pageX - getCoords(task).left + 3;
 
-        task.ondragstart = () => {
-            return false;
-        };
+            const dividerWidth = this.state.divider;
+            document.onmousemove = function (e) {
+                task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+            };
+            task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
 
-        const dividerWidth = this.state.divider;
-        document.onmousemove = function (e) {
-            task.parentNode.style.left = (e.pageX - (dividerWidth + task.offsetWidth / 2 - ganttArea.scrollLeft)) + 'px';
-        };
-        task.parentNode.style.left = e.pageX - (dividerWidth + task.offsetWidth / 2 - ganttArea.scrollLeft) + 'px';
-        /*this.setState({divider: parseInt(task.style.left)})*/
+        }
     };
     taskMouseUp = (e) => {
         document.onmousemove = null;
@@ -142,9 +140,41 @@ class Gantt extends Component {
         };
     };
 
+    getCoords = (e) => {   // except IE8-
+        const box = e.getBoundingClientRect();
+        return {
+            top: box.top,
+            left: box.left
+        };
+    };
+
+
     highlightRow = (e) => {
         //TODO if clicked on task highlight all the row
     };
+
+    converteStringToDate = (date) => {
+        const dateArr = date.split('.');
+        return new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    };
+
+    getTaskData = (e) => {
+        const task = e.target.parentNode;
+        const taskDetails = {
+            id: task.getAttribute('data-task-id'),
+            type: 'task',
+            name: e.target.parentNode.childNodes[0].innerText,
+            begin: this.converteStringToDate(e.target.parentNode.childNodes[1].innerText),
+            end: this.converteStringToDate(e.target.parentNode.childNodes[2].innerText),
+            progress: task.getAttribute('data-task-progress'),
+            links: [],
+            level: task.getAttribute('data-task-level'),
+        };
+        console.log(taskDetails, task);
+        this.setState({taskData: taskDetails});
+        this.handleOpenModal();
+    };
+
 
     render() {
         const {tasks, isLoading} = this.props;
@@ -165,6 +195,11 @@ class Gantt extends Component {
                             divider={this.state.divider}
                             tasks={tasks}
                             addTask={this.props.addTask}
+                            getTaskData={this.getTaskData}
+                            handleClose={this.handleClose}
+                            handleOpenModal={this.handleOpenModal}
+                            modalOpened={this.state.open}
+                            modalData={this.state.taskData}
                         />
                         <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
                                       divider={this.state.divider}/>

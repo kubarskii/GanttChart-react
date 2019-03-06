@@ -41,5 +41,9 @@
     font-size: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+    &.weekend{
+      background: rgba(236, 195, 176, 0.9);
+      border-bottom: 1px solid #ccc;
+    }
   }
 }
