@@ -77,6 +77,16 @@ export const fetchGanttTasks = params => dispatch => {
             progress: 23,
             links: [],
             level: 1,
+        },
+        {
+            id: '6',
+            type: 'task',
+            name: 'Test task',
+            begin: new Date(2019, 4, 1),
+            end: new Date(2020, 5, 1),
+            progress: 100,
+            links: [],
+            level: 1,
         }];
 
     dispatch(fetchGanttTasksRequest());

@@ -106,7 +106,30 @@ class Gantt extends Component {
         const task = e.target;
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
 
+        if (e.button === 0) {
+            ganttArea.ondragstart = () => {
+                return false;
+            };
+            task.ondragstart = () => {
+                return false;
+            };
 
+
+            console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
+            const getCoords = this.getCoords;
+            task.ondragstart = () => {
+                return false;
+            };
+//TODO Why 3 px
+            const shiftX = e.pageX - getCoords(task).left + 3;
+
+            const dividerWidth = this.state.divider;
+            document.onmousemove = function (e) {
+                task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+            };
+            task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+
+=======
         if (e.button === 0) {
             ganttArea.ondragstart = () => {
                 return false;
@@ -122,10 +145,10 @@ class Gantt extends Component {
 
             const dividerWidth = this.state.divider;
             document.onmousemove = function (e) {
-                task.parentNode.style.left = e.pageX - (dividerWidth /*+ task.offsetWidth / 2*/ + shiftX - ganttArea.scrollLeft) + 'px';
+                task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
             };
-            task.parentNode.style.left = e.pageX - (dividerWidth /*+ task.offsetWidth / 2*/ + shiftX - ganttArea.scrollLeft) + 'px';
-            /*this.setState({divider: parseInt(task.style.left)})*/
+            task.parentNode.style.left = e.pageX - (dividerWidth  + shiftX - ganttArea.scrollLeft) + 'px';
+
         }
     };
     taskMouseUp = (e) => {
