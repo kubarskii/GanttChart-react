@@ -5,6 +5,8 @@ import GanttArea from './GanttArea/index';
 import GanttTools from './GanttTools/index';
 import GanttDivider from './GanttDivider/index';
 
+const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];
+
 class Gantt extends Component {
 
     constructor({data, options}) {
@@ -12,10 +14,11 @@ class Gantt extends Component {
 
     }
 
+//TODO make resizing through refs, not to rerender components - force performance
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
         divider: document.body.offsetWidth / 2,
-        zoom: 'day',
+        zoom: 'month',
         scale: 1,
         open: false,
         taskData: {},
@@ -23,6 +26,7 @@ class Gantt extends Component {
 
     handleClose = () => {
         this.setState({open: false});
+        this.setState({taskData: {}});
     };
     handleOpenModal = () => {
         this.setState({open: true});
@@ -153,21 +157,17 @@ class Gantt extends Component {
         //TODO if clicked on task highlight all the row
     };
 
-    converteStringToDate = (date) => {
-        const dateArr = date.split('.');
-        return new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-    };
-
     getTaskData = (e) => {
         const task = e.target.parentNode;
         const taskId = task.getAttribute('data-task-id');
-        let obj =
-        console.log(obj);
         const taskDetails = this.props.tasks.find(obj => obj.id == taskId);
         this.setState({taskData: taskDetails});
         this.handleOpenModal();
     };
 
+    changeTaskData = (e) => {
+        this.setState({taskData: e.target.valueOf})
+    };
 
     render() {
         const {tasks, isLoading} = this.props;

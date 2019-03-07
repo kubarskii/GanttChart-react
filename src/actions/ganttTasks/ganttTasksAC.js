@@ -83,7 +83,7 @@ export const fetchGanttTasks = params => dispatch => {
             type: 'task',
             name: 'Test task',
             begin: new Date(2019, 4, 1),
-            end: new Date(2020, 3, 1),
+            end: new Date(2021, 5, 1),
             progress: 100,
             links: [],
             level: 1,
