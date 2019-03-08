@@ -20,8 +20,8 @@ export default class GanttScaleLine extends Component {
         return (
             <div className='gantt-scale-line__wrapper'>
                 {zoom === 'month' ?
-                    <div className='gantt-scale-line__month-line' style={{borderRight: '1px solid #ccc'}}>
-                        {this.renderYear(first, last, width)}
+                    <div className='gantt-scale-line__year-line' style={{borderRight: '1px solid #ccc'}}>
+                        {this.renderYear(first, last, width, this.props.calcMonthNumber)}
                     </div> : null}
 
                 <div className='gantt-scale-line__month-line'>
@@ -44,6 +44,7 @@ export default class GanttScaleLine extends Component {
                      key={i}
                      style={{
                          width: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
+                         maxWidth: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
                          background: (i % 2 > 0) ? '#cccccc45' : 'none'
                      }}>
                     <div>{`${monthNames[month.month]} ${month.year}`}</div>
@@ -75,8 +76,39 @@ export default class GanttScaleLine extends Component {
     };
 
     renderYear = (first, last, width) => {
+        const calcMonthsNumber = this.props.calcMonthsNumber;
+        const lastYear = last.getFullYear();
+        const firstYear = first.getFullYear();
+        const differnce = lastYear - firstYear;
+        const years = [];
+        let firstD, lastD;
+
+        for (let i = 0; i <= differnce; i++) {
+            if (i === 0) {
+                firstD = first;
+            } else {
+                firstD = new Date(firstD.getFullYear() + 1, 0, 1);
+            }
+
+            if (i === differnce) {
+                lastD = last;
+            } else {
+                lastD = new Date(firstD.getFullYear(), 11, 31);
+            }
+
+            years.push({year: firstYear + i, first: firstD, last: lastD});
+        }
         return (
-            <div></div>
+            <div className='gantt-scale-line__year-line' style={{}}>
+                {years.map(({year, first, last}, i) => (
+                    <div key={i} style={{
+                        width: `${calcMonthsNumber(first, last).length * width}px`,
+                        borderRight: '1px solid #ccc',
+                        borderBottom: '1px solid #ccc',
+                        background:`${(i%2===0)?'rgba(204, 204, 204, 0.27)':'#fff'}`
+                    }}>{year}</div>
+                ))}
+            </div>
         );
     }
 

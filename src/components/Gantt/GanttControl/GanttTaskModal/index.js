@@ -48,13 +48,13 @@ class Modal extends Component {
         this.setState({fullWidth: event.target.checked});
     };
 
+
     render() {
-        let {open, handleClose, title, modalData} = this.props;
+        let {open, handleClose, title, modalData, changeTaskData} = this.props;
 
         if (modalData === {}) {
             modalData = this.DEFAULT_TASK;
         }
-        ;
 
         return (
             <React.Fragment>
@@ -69,8 +69,8 @@ class Modal extends Component {
                     <DialogContent>
 
                         <form>
-                            <input type='text' onChange={() => {
-                            }} value={modalData.id} placeholder={''}/>
+
+                            <input type='text' onChange={changeTaskData} value={modalData.id} placeholder={''}/>
 
                             <input type='text' onChange={() => {
                             }} value={modalData.type}/>
