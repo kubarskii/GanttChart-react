@@ -14,7 +14,7 @@ class Gantt extends Component {
 
     }
 
-//TODO make resizing through refs, not to rerender components - force performance
+    //TODO make resizing through refs, not to rerender components - force performance
     //TODO CRUD CREATE_TASK, UPDATE_TASK, DELETE_TASK, UPDATE_SORT_TASKS
     state = {
         divider: document.body.offsetWidth / 2,
@@ -23,6 +23,7 @@ class Gantt extends Component {
         open: false,
         taskData: {},
     };
+
 
     handleClose = () => {
         this.setState({open: false});
@@ -73,7 +74,7 @@ class Gantt extends Component {
         if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 13)) {
             devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
             ganttControl.style.width = `${parseInt(devider.style.left) - 12}px`;
-            //this.setState({divider: parseInt(devider.style.left)})
+
         }
 
     };
@@ -90,7 +91,9 @@ class Gantt extends Component {
     onMouseUp = (e) => {
         const divider = ReactDOM.findDOMNode(this._GanttDivider);
         document.onmousemove = null;
-        document.onmouseup = null;
+        document.onmouseup = () => {
+            this.setState({divider: parseInt(divider.style.left)})
+        };
         divider.onmouseup = null;
     };
 
@@ -115,7 +118,7 @@ class Gantt extends Component {
         const task = e.target;
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
 
-        if (e.button === 0) {
+        if (e.button === 0 && (task.classList[0] !== 'dot' && task.classList[0] !== 'text')) {
             ganttArea.ondragstart = () => {
                 return false;
             };
@@ -128,7 +131,8 @@ class Gantt extends Component {
             task.ondragstart = () => {
                 return false;
             };
-//TODO Why 3 px
+
+            //TODO Why 3 px
             const shiftX = e.pageX - getCoords(task).left + 3;
 
             const dividerWidth = this.state.divider;
@@ -157,6 +161,14 @@ class Gantt extends Component {
         };
     };
 
+    ganttOnScroll = () => { //Fix scrollable gantt Area with trackPad
+        const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
+        ganttArea.onscroll = () => {
+            ganttArea.scrollTop = 0;
+        }
+    }
+    ;
+
 
     highlightRow = (e) => {
         //TODO if clicked on task highlight all the row
@@ -165,7 +177,7 @@ class Gantt extends Component {
     getTaskData = (e) => {
         const task = e.target.parentNode;
         const taskId = task.getAttribute('data-task-id');
-        const taskDetails = this.props.tasks.find(obj => obj.id == taskId);
+        const taskDetails = this.props.tasks.find(obj => obj.id === taskId);
         this.setState({taskData: taskDetails});
         this.handleOpenModal();
     };
@@ -190,8 +202,8 @@ class Gantt extends Component {
                     </div>
                     <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
                         <GanttControl
-                            ref={this.getGanttControlRef}
                             divider={this.state.divider}
+                            ref={this.getGanttControlRef}
                             tasks={tasks}
                             addTask={this.props.addTask}
                             getTaskData={this.getTaskData}
@@ -200,14 +212,17 @@ class Gantt extends Component {
                             modalOpened={this.state.open}
                             modalData={this.state.taskData}
                         />
-                        <GanttDivider ref={this.getRef} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}
-                                      divider={this.state.divider}/>
+                        <GanttDivider
+                            ref={this.getRef}
+                            onMouseDown={this.onMouseDown}
+                            onMouseUp={this.onMouseUp}
+                        />
                         <GanttArea
                             ref={this.getGanttAreaRef}
                             onMouseDown={this.taskMouseDown}
                             onMouseUp={this.taskMouseUp}
                             onMouseLeave={this.taskMouseLeave}
-                            divider={this.state.divider}
+                            onScroll={this.ganttOnScroll}
                             zoom={this.state.zoom}
                             scale={this.state.scale}
                             tasks={tasks}

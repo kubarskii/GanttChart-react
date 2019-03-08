@@ -79,7 +79,9 @@ class GanttArea extends Component {
                 throw Error('Width doesn`t exist');
         }
         return (
-            <div className='gantt gantt-area__wrapper' style={{width: 0, order: 2}}>
+            <div
+                onScroll={this.props.onScroll}
+                className='gantt gantt-area__wrapper' style={{width: 0, order: 2}}>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
