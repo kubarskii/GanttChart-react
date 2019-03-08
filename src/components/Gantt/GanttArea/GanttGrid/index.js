@@ -29,7 +29,9 @@ export default class GanttGrid extends Component {
 
         return (this.props.calcMonthsNumber(first, last).map((month, i) => (
                     this.props.daysInMonth(month.year, month.month).map((day, i) =>
-                        <div className={'gantt-grid__cell '+`${this.isWeekend(new Date(month.year, month.month, day - 1).getDay())}`} key={i} style={{
+                        <div
+                            className={'gantt-grid__cell ' + `${this.isWeekend(new Date(month.year, month.month, day - 1).getDay())}`}
+                            key={i} style={{
                             width: `${width}px`,
                         }}>
                         </div>
@@ -41,7 +43,7 @@ export default class GanttGrid extends Component {
 
     isWeekend = (day) => {
 
-        return ((day === 6 || day === 5)&& this.props.zoom === 'day') ? 'weekend' : '';
+        return ((day === 6 || day === 5) && this.props.zoom === 'day') ? 'weekend' : '';
     };
 
 }

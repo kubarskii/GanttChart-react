@@ -24,7 +24,8 @@ export default class GanttControlTasks extends Component {
                         <div>{this.toDate(Date.parse(task.end))} </div>
                         <div>1</div>
                         <div>1</div>
-                        <div className='gantt-control-head button-add-task' onClick={this.props.openModal}
+                        <div className='gantt-control-head button-add-task'
+                             onClick={this.props.openModal}
                              data-level={`${task.level + 1}`}>+
                         </div>
                     </div>

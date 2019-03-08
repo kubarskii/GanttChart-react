@@ -11,11 +11,12 @@ class GanttControl extends Component {
 
     render() {
 
-        const {tasks, addTask, divider, getTaskData, handleOpenModal, handleClose, modalOpened, modalData} = this.props;
+        const {tasks, addTask, getTaskData, handleOpenModal, handleClose, modalOpened, modalData, divider} = this.props;
         console.log('rendered');
         return (
-            <div className='gantt gantt-control__wrapper' style={{width: `${divider - 12}px`, order: 1, background:'#f2f9ff'}}>
-                <div style={{width: '1000px', overflowX: 'auto', background:'#fff'}}>
+            <div className='gantt gantt-control__wrapper'
+                 style={{width: `${divider - 12}px`, order: 1, background: '#f2f9ff'}}>
+                <div style={{width: '1000px', overflowX: 'auto', background: '#fff'}}>
                     <GanttControlHead
                         addTask={addTask}
                         openModal={handleOpenModal}

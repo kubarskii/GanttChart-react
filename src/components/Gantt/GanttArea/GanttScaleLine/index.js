@@ -47,7 +47,7 @@ export default class GanttScaleLine extends Component {
                          maxWidth: `${this.props.daysInMonth(month.year, month.month).length * width}px`,
                          background: (i % 2 > 0) ? '#cccccc45' : 'none'
                      }}>
-                    <div>{`${monthNames[month.month]} ${month.year}`}</div>
+                    <div>{`${monthNames[month.month]}`}</div>
                 </div>
             ))
         );

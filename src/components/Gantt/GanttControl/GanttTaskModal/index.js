@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {withStyles} from '@material-ui/core/styles';
 
 
 const styles = theme => ({
@@ -69,15 +69,23 @@ class Modal extends Component {
                     <DialogContent>
 
                         <form>
+                            <div style={{display: 'flex'}}>
+                                <label>id: </label>
+                                <input type='text' onChange={changeTaskData} value={modalData.id} placeholder={''}/>
+                                <label>Task type: </label>
+                                <input type='text' onChange={() => {
+                                }} value={modalData.type}/>
+                            </div>
+                            <div style={{display: 'flex'}}>
+                                <label>Name: </label>
+                                <input type='text' onChange={() => {
+                                }} value={modalData.name}/>
+                            </div>
+                            <div style={{display: 'flex'}}>
 
-                            <input type='text' onChange={changeTaskData} value={modalData.id} placeholder={''}/>
-
-                            <input type='text' onChange={() => {
-                            }} value={modalData.type}/>
-                            <input type='text' onChange={() => {
-                            }} value={modalData.name}/>
-                            <input type='text' onChange={() => {
-                            }} value={modalData.begin}/>
+                                <input type='text' onChange={() => {
+                                }} value={modalData.begin}/>
+                            </div>
                             <input type='text' onChange={() => {
                             }} value={modalData.end}/>
                             <input type='text' onChange={() => {
@@ -86,6 +94,7 @@ class Modal extends Component {
                             }} value={Number(modalData.level) + 1}/>
 
                         </form>
+
 
                     </DialogContent>
                     <DialogActions>
