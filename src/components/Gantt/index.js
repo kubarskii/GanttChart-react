@@ -60,15 +60,20 @@ class Gantt extends Component {
     getGanttAreaRef = (node) => {
         return this._GanttArea = node
     };
+    getGanttControlRef = (node) => {
+        return this._GanttControl = node
+    };
 
     moveTo = (e, devider) => {
+        const ganttControl = ReactDOM.findDOMNode(this._GanttControl);
         devider.ondragstart = () => {
             return false;
         };
         devider.style.position = 'absolute';
         if ((e.pageX - devider.offsetWidth / 2 > 13) && (e.pageX - devider.offsetWidth / 2 < document.body.clientWidth - 13)) {
             devider.style.left = e.pageX - devider.offsetWidth / 2 + 'px';
-            this.setState({divider: parseInt(devider.style.left)})
+            ganttControl.style.width = `${parseInt(devider.style.left) - 12}px`;
+            //this.setState({divider: parseInt(devider.style.left)})
         }
 
     };
@@ -185,6 +190,7 @@ class Gantt extends Component {
                     </div>
                     <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
                         <GanttControl
+                            ref={this.getGanttControlRef}
                             divider={this.state.divider}
                             tasks={tasks}
                             addTask={this.props.addTask}
