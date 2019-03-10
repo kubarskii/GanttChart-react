@@ -96,7 +96,7 @@ export default class GanttTasksLayer extends Component {
                             <div className={'gantt-one-task__task task'}
                                  onMouseDown={this.props.onMouseDown}
                                  onMouseUp={this.props.onMouseUp}
-                                 onClick={this.props.highlightRow}
+                                 onClick={()=>(this.forceUpdate())}
                                  onDoubleClick={getTaskData}
                                  onMouseLeave={this.props.onMouseLeave}
                                  data-task-id={task.id}

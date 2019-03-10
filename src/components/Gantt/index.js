@@ -4,6 +4,8 @@ import GanttControl from './GanttControl/index';
 import GanttArea from './GanttArea/index';
 import GanttTools from './GanttTools/index';
 import GanttDivider from './GanttDivider/index';
+import {CELL_MONTH_WIDTH} from '../../constants/gantt'
+
 
 const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];
 
@@ -122,10 +124,6 @@ class Gantt extends Component {
         }
     };
 
-    //TODO Stick mouse drag to dates
-    //TODO Update state (tasks)
-    //TODO small fixes for dnd
-
     createInterval = (tasks = this.props.tasks) => {
         let first, last;
         tasks.map((task, i) => {
@@ -138,12 +136,7 @@ class Gantt extends Component {
     taskMouseDown = (e) => {
 
         const task = e.target;
-
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
-
-        /*
-                console.log(task);
-        */
 
         if (e.button === 0 && (task.classList[0] !== 'dot' && task.classList[0] !== 'text')) {
             ganttArea.ondragstart = () => {
@@ -153,20 +146,17 @@ class Gantt extends Component {
                 return false;
             };
 
-            /*
-                        console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
-            */
             const getCoords = this.getCoords;
             task.ondragstart = () => {
                 return false;
             };
 
-            //TODO Why 3 px
-            const shiftX = e.pageX - getCoords(task).left + 7;
+            const shiftX = e.pageX - getCoords(task).left + 7; //margin 4 + borders 3
 
             const dividerWidth = this.state.divider;
             document.onmousemove = (e) => {
                 task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+                this.left = task.parentNode.style.left;
                 document.onmouseup = (e) => {
                     this.calcNewStart(e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft), task.parentNode);
                     document.onmousemove = null;
@@ -209,40 +199,25 @@ class Gantt extends Component {
 
 
         const calcForMonth = () => {
+
             const difference = Date.parse(taskDetails.end) - Date.parse(taskDetails.begin);
 
             const firstMonth = () => this.createInterval().first.getMonth();
             const firstMonthBefore = this.createInterval().first.getMonth();
 
-            const month = Math.floor(left / (this.state.scale * 180)) + firstMonth() - 1;
-            const oneYear = 180 * (12 - firstMonth() + 1);
+            const month = Math.floor(left / (this.state.scale * CELL_MONTH_WIDTH)) + firstMonth() - 1;
+            const oneYear = CELL_MONTH_WIDTH * this.state.scale * (12 - firstMonth() + 1);
 
-            const year = (left > oneYear) ? this.createInterval().first.getFullYear() + Math.ceil(left / (this.state.scale * 180 * 12) - oneYear / (180 * 12)) : this.createInterval().first.getFullYear();
-
-
+            const year = (left > oneYear) ? this.createInterval().first.getFullYear() + Math.ceil(left / (this.state.scale * CELL_MONTH_WIDTH * 12) - oneYear / (CELL_MONTH_WIDTH * this.state.scale * 12)) : this.createInterval().first.getFullYear();
             console.log(month, (month - (12 * Math.floor(month / 12))), left, year);
             taskDetails.begin = new Date(year, (month >= 12) ? (month - (12 * Math.floor(month / 12))) : month, 1);
             taskDetails.end = new Date(Date.parse(taskDetails.begin) + difference);
 
             tasks[index] = taskDetails;
-            /*
-                        const widthBefore = ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth;
-            */
-
-
-          /*  if ((Math.floor(left / (this.state.scale * 180)) + firstMonth() - 1) === taskDetails.begin.getMonth()) {
-                task.style.left = `${(taskDetails.begin.getMonth() - firstMonth() + 1) * 180}px`;
-            }*/
 
             this.props.updateTask(tasks);
-            /*
-                        if (widthBefore < ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth) {
-                            task.style.left = ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth - widthBefore + 'px';
-                        } else if (widthBefore > ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth) {
-                            const add = (Math.floor(left / (this.state.scale * 180)) - (firstMonth() - firstMonthBefore - 1) - 2) * 180;
-                            task.style.left = widthBefore - ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth
-                                - ((firstMonth() - firstMonthBefore - 1) * 180) + add + 'px';
-                        }*/
+            this.setState({zoom: 'day'});
+            this.setState({zoom: 'month'});
         };
 
         switch (this.state.zoom) {
@@ -254,7 +229,6 @@ class Gantt extends Component {
         }
 
     };
-
 
     highlightRow = (e) => {
         //TODO if clicked on task highlight all the row
@@ -315,6 +289,7 @@ class Gantt extends Component {
                             onClick={this.dividerOnClick}
                         />
                         <GanttArea
+                            left={this.left}
                             ref={this.getGanttAreaRef}
                             onMouseDown={this.taskMouseDown}
                             onMouseUp={this.taskMouseUp}

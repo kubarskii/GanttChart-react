@@ -100,6 +100,7 @@ class GanttArea extends Component {
                     interval={interval}
                 />
                 <GanttTasksLayer
+                    left={this.props.left}
                     onMouseDown={this.props.onMouseDown}
                     onMouseUp={this.props.onMouseUp}
                     onMouseLeave={this.props.onMouseLeave}
