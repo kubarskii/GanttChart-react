@@ -69,6 +69,10 @@ export default class GanttTasksLayer extends Component {
     };
 
 
+    handleUpdate=()=>{
+      this.forceUpdate();
+    };
+
     render() {
         const {tasks, zoom, scale, getTaskData} = this.props;
         let width;
@@ -103,6 +107,7 @@ export default class GanttTasksLayer extends Component {
 
 
                                 <div
+                                    onClick={this.handleUpdate}
                                     className='dot dot-before'
                                     style={{}}/>
 
@@ -110,15 +115,17 @@ export default class GanttTasksLayer extends Component {
                                     position: 'absolute',
                                     color: 'white',
                                     fontSize: '11px',
-                                    lineHeight: '11px',
+                                    lineHeight: '14px',
                                     background: '#4d1d016a',
                                     width: `${width * scale * this.calcWidth(Date.parse(task.begin), Date.parse(task.end)) * (task.progress / 100)}px`,
                                     height: '14px',
                                     top: 'calc(50% - 7px)',
                                     borderRadius:'4px',
+                                    textAlign:'right',
+
 
                                 }}>
-                                    {/**/}
+                                    {(task.progress >0)?`${task.progress}%`:''}
                                 </div>
                                 <div className='gantt-one-task__task-text' style={{
                                     position: 'absolute',

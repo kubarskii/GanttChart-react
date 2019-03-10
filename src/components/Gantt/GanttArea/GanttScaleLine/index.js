@@ -79,18 +79,18 @@ export default class GanttScaleLine extends Component {
         const calcMonthsNumber = this.props.calcMonthsNumber;
         const lastYear = last.getFullYear();
         const firstYear = first.getFullYear();
-        const differnce = lastYear - firstYear;
+        const difference = lastYear - firstYear;
         const years = [];
         let firstD, lastD;
 
-        for (let i = 0; i <= differnce; i++) {
+        for (let i = 0; i <= difference; i++) {
             if (i === 0) {
                 firstD = first;
             } else {
                 firstD = new Date(firstD.getFullYear() + 1, 0, 1);
             }
 
-            if (i === differnce) {
+            if (i === difference) {
                 lastD = last;
             } else {
                 lastD = new Date(firstD.getFullYear(), 11, 31);

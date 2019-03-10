@@ -43,7 +43,7 @@ class GanttArea extends Component {
 
     //quantity if cells
     calcMonthsNumber = (first, last) => {
-        const firstDate = first;
+        const firstDate = new Date(first.getFullYear(), (first.getMonth() > 0) ? first.getMonth() - 1 : first.getMonth(), first.getDate());
         const lastDate = last;
 
         let monthBetween = (lastDate.getFullYear() - firstDate.getFullYear()) * 12;
@@ -81,7 +81,7 @@ class GanttArea extends Component {
         return (
             <div
                 onScroll={this.props.onScroll}
-                className='gantt gantt-area__wrapper' style={{width: 0, order: 2}}>
+                className='gantt gantt-area__wrapper' style={{width: 0, order: 2, margin: '0 0 0 4px'}}>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
@@ -100,9 +100,9 @@ class GanttArea extends Component {
                     interval={interval}
                 />
                 <GanttTasksLayer
-                    onMouseDown = {this.props.onMouseDown}
-                    onMouseUp = {this.props.onMouseUp}
-                    onMouseLeave = {this.props.onMouseLeave}
+                    onMouseDown={this.props.onMouseDown}
+                    onMouseUp={this.props.onMouseUp}
+                    onMouseLeave={this.props.onMouseLeave}
                     createInterval={this.createInterval}
                     calcMonthsNumber={this.calcMonthsNumber}
                     daysInMonth={this.daysInMonth}
