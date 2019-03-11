@@ -79,6 +79,7 @@ class GanttArea extends Component {
                 throw Error('Width doesn`t exist');
         }
         return (
+
             <div
                 onScroll={this.props.onScroll}
                 className='gantt gantt-area__wrapper' style={{width: 0, order: 2, margin: '0 0 0 4px'}}>
@@ -99,21 +100,22 @@ class GanttArea extends Component {
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
-                <GanttTasksLayer
-                    left={this.props.left}
-                    onMouseDown={this.props.onMouseDown}
-                    onMouseUp={this.props.onMouseUp}
-                    onMouseLeave={this.props.onMouseLeave}
-                    createInterval={this.createInterval}
-                    calcMonthsNumber={this.calcMonthsNumber}
-                    daysInMonth={this.daysInMonth}
-                    scale={scale}
-                    zoom={zoom}
-                    width={width * scale}
-                    tasks={tasks}
-                    interval={interval}
-                    getTaskData={getTaskData}
-                />
+                {this.props.needUpdate ? null :
+                    <GanttTasksLayer
+                        left={this.props.left}
+                        onMouseDown={this.props.onMouseDown}
+                        onMouseUp={this.props.onMouseUp}
+                        onMouseLeave={this.props.onMouseLeave}
+                        createInterval={this.createInterval}
+                        calcMonthsNumber={this.calcMonthsNumber}
+                        daysInMonth={this.daysInMonth}
+                        scale={scale}
+                        zoom={zoom}
+                        width={width * scale}
+                        tasks={tasks}
+                        interval={interval}
+                        getTaskData={getTaskData}
+                    />}
                 <GanttLinksLayer/>
 
             </div>

@@ -7,7 +7,7 @@ import GanttDivider from './GanttDivider/index';
 import {CELL_MONTH_WIDTH} from '../../constants/gantt'
 
 
-const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];
+/*const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];*/
 
 class Gantt extends Component {
 
@@ -24,6 +24,7 @@ class Gantt extends Component {
         scale: 1,
         open: false,
         taskData: {},
+        needUpdate: false,
     };
 
 
@@ -203,7 +204,6 @@ class Gantt extends Component {
             const difference = Date.parse(taskDetails.end) - Date.parse(taskDetails.begin);
 
             const firstMonth = () => this.createInterval().first.getMonth();
-            const firstMonthBefore = this.createInterval().first.getMonth();
 
             const month = Math.floor(left / (this.state.scale * CELL_MONTH_WIDTH)) + firstMonth() - 1;
             const oneYear = CELL_MONTH_WIDTH * this.state.scale * (12 - firstMonth() + 1);
@@ -216,8 +216,7 @@ class Gantt extends Component {
             tasks[index] = taskDetails;
 
             this.props.updateTask(tasks);
-            this.setState({zoom: 'day'});
-            this.setState({zoom: 'month'});
+
         };
 
         switch (this.state.zoom) {
@@ -227,6 +226,11 @@ class Gantt extends Component {
             default:
                 break;
         }
+
+        //TODO Rewrite bad code -- really really bad
+        this.setState({needUpdate: !this.state.needUpdate});
+        this.setState({needUpdate: !this.state.needUpdate})
+
 
     };
 
@@ -289,6 +293,7 @@ class Gantt extends Component {
                             onClick={this.dividerOnClick}
                         />
                         <GanttArea
+                            needUpdate={this.state.needUpdate}
                             left={this.left}
                             ref={this.getGanttAreaRef}
                             onMouseDown={this.taskMouseDown}

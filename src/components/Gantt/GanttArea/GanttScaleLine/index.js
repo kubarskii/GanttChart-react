@@ -98,18 +98,19 @@ export default class GanttScaleLine extends Component {
 
             years.push({year: firstYear + i, first: firstD, last: lastD});
         }
+        console.log('rendered');
         return (
-            <div className='gantt-scale-line__year-line' style={{}}>
+            <div className='gantt-scale-line__year-line'
+                 style={{}}>
                 {years.map(({year, first, last}, i) => (
                     <div key={i} style={{
                         width: `${calcMonthsNumber(first, last).length * width}px`,
                         borderRight: '1px solid #ccc',
                         borderBottom: '1px solid #ccc',
-                        background:`${(i%2===0)?'rgba(204, 204, 204, 0.27)':'#fff'}`
+                        background: `${(i % 2 === 0) ? 'rgba(204, 204, 204, 0.27)' : '#fff'}`
                     }}>{year}</div>
                 ))}
             </div>
         );
     }
-
 }

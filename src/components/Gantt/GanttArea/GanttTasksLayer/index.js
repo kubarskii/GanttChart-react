@@ -86,6 +86,7 @@ export default class GanttTasksLayer extends Component {
             default:
                 width = 1;
         }
+        console.log(width * scale * this.calcMargin(Date.parse(tasks[0].begin)));
         return (
             <div className='gantt-tasks__wrapper'>
                 {tasks.map((task, i) => (
@@ -96,7 +97,6 @@ export default class GanttTasksLayer extends Component {
                             <div className={'gantt-one-task__task task'}
                                  onMouseDown={this.props.onMouseDown}
                                  onMouseUp={this.props.onMouseUp}
-                                 onClick={()=>(this.forceUpdate())}
                                  onDoubleClick={getTaskData}
                                  onMouseLeave={this.props.onMouseLeave}
                                  data-task-id={task.id}
