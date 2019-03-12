@@ -43,7 +43,8 @@ class GanttArea extends Component {
 
     //quantity if cells
     calcMonthsNumber = (first, last) => {
-        const firstDate = first;
+        console.log(first, last);
+        const firstDate = new Date(first.getFullYear(), (first.getMonth() > -1) ? first.getMonth() - 1 : first.getMonth(), first.getDate());
         const lastDate = last;
 
         let monthBetween = (lastDate.getFullYear() - firstDate.getFullYear()) * 12;
@@ -79,9 +80,10 @@ class GanttArea extends Component {
                 throw Error('Width doesn`t exist');
         }
         return (
+
             <div
                 onScroll={this.props.onScroll}
-                className='gantt gantt-area__wrapper' style={{width: 0, order: 2}}>
+                className='gantt gantt-area__wrapper' style={{width: 0, order: 2, margin: '0 0 0 4px'}}>
                 <GanttScaleLine
                     zoom={zoom}
                     scale={scale}
@@ -99,20 +101,22 @@ class GanttArea extends Component {
                     calcMonthsNumber={this.calcMonthsNumber}
                     interval={interval}
                 />
-                <GanttTasksLayer
-                    onMouseDown = {this.props.onMouseDown}
-                    onMouseUp = {this.props.onMouseUp}
-                    onMouseLeave = {this.props.onMouseLeave}
-                    createInterval={this.createInterval}
-                    calcMonthsNumber={this.calcMonthsNumber}
-                    daysInMonth={this.daysInMonth}
-                    scale={scale}
-                    zoom={zoom}
-                    width={width * scale}
-                    tasks={tasks}
-                    interval={interval}
-                    getTaskData={getTaskData}
-                />
+                {this.props.needUpdate ? null :
+                    <GanttTasksLayer
+                        left={this.props.left}
+                        onMouseDown={this.props.onMouseDown}
+                        onMouseUp={this.props.onMouseUp}
+                        onMouseLeave={this.props.onMouseLeave}
+                        createInterval={this.createInterval}
+                        calcMonthsNumber={this.calcMonthsNumber}
+                        daysInMonth={this.daysInMonth}
+                        scale={scale}
+                        zoom={zoom}
+                        width={width * scale}
+                        tasks={tasks}
+                        interval={interval}
+                        getTaskData={getTaskData}
+                    />}
                 <GanttLinksLayer/>
 
             </div>

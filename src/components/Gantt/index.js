@@ -4,8 +4,10 @@ import GanttControl from './GanttControl/index';
 import GanttArea from './GanttArea/index';
 import GanttTools from './GanttTools/index';
 import GanttDivider from './GanttDivider/index';
+import {CELL_MONTH_WIDTH} from '../../constants/gantt'
 
-const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];
+
+/*const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];*/
 
 class Gantt extends Component {
 
@@ -22,6 +24,7 @@ class Gantt extends Component {
         scale: 1,
         open: false,
         taskData: {},
+        needUpdate: false,
     };
 
 
@@ -47,7 +50,6 @@ class Gantt extends Component {
         this.setState({zoom: 'month'});
 
     };
-
     toDay = () => {
         this.setState({zoom: 'day'});
     };
@@ -79,22 +81,33 @@ class Gantt extends Component {
 
     };
 
+
     onMouseDown = (e) => {
         const divider = ReactDOM.findDOMNode(this._GanttDivider);
-        const moveTo = this.moveTo;
-        moveTo(e, divider);
-        document.onmousemove = function (e) {
-            moveTo(e, divider);
+        this.moveTo(e, divider);
+        document.onmousemove = (e) => {
+            this.moveTo(e, divider);
         };
     };
 
     onMouseUp = (e) => {
         const divider = ReactDOM.findDOMNode(this._GanttDivider);
+        this.setState({divider: parseInt(divider.style.left)});
+        /*
+                console.log('divider updated');
+        */
+
         document.onmousemove = null;
         document.onmouseup = () => {
-            this.setState({divider: parseInt(divider.style.left)})
+            this.setState({divider: parseInt(divider.style.left)});
+            /*
+                        console.log('divider updated');
+            */
         };
-        divider.onmouseup = null;
+        divider.onmouseup = () => {
+            /* this.setState({divider: parseInt(divider.style.left)});
+             console.log('divider updated');*/
+        };
     };
 
     onMouseLeave = (e) => {
@@ -102,19 +115,27 @@ class Gantt extends Component {
         const wrapper = ReactDOM.findDOMNode(this._GanttWrapper);
         wrapper.onmouseleave = () => {
             document.onmouseup = () => {
+                this.setState({divider: parseInt(divider.style.left)});
                 document.onmousemove = null;
                 divider.onmousemove = null;
-
+                /*
+                                console.log('asdad');
+                */
             };
         }
     };
 
-
-    //TODO Stick mouse drag to dates
-    //TODO Update state (tasks)
-    //TODO small fixes for dnd
+    createInterval = (tasks = this.props.tasks) => {
+        let first, last;
+        tasks.map((task, i) => {
+            first = ((first > task.begin.valueOf()) || (first === undefined)) ? task.begin : first;
+            last = ((last < task.end.valueOf()) || (last === undefined)) ? task.end : last;
+        });
+        return ({first: first, last: last})
+    };
 
     taskMouseDown = (e) => {
+
         const task = e.target;
         const ganttArea = ReactDOM.findDOMNode(this._GanttArea);
 
@@ -126,20 +147,23 @@ class Gantt extends Component {
                 return false;
             };
 
-            console.log(this.getCoords(task), e.pageX, e.pageX - (this.getCoords(task).left), task.offsetWidth - (e.pageX - (this.getCoords(task).left)));
             const getCoords = this.getCoords;
             task.ondragstart = () => {
                 return false;
             };
 
-            //TODO Why 3 px
-            const shiftX = e.pageX - getCoords(task).left + 3;
+            const shiftX = e.pageX - getCoords(task).left + 7; //margin 4 + borders 3
 
             const dividerWidth = this.state.divider;
-            document.onmousemove = function (e) {
+            document.onmousemove = (e) => {
                 task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+                this.left = task.parentNode.style.left;
+                document.onmouseup = (e) => {
+                    this.calcNewStart(e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft), task.parentNode);
+                    document.onmousemove = null;
+                }
             };
-            task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
+            //task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
 
         }
     };
@@ -166,9 +190,48 @@ class Gantt extends Component {
         ganttArea.onscroll = () => {
             ganttArea.scrollTop = 0;
         }
-    }
-    ;
+    };
 
+    calcNewStart = (left, task) => {
+        const taskId = task.getAttribute('data-task-id');
+        const tasks = this.props.tasks;
+        const taskDetails = tasks.find(obj => obj.id === taskId);
+        const index = tasks.findIndex(obj => obj.id === taskId);
+
+
+        const calcForMonth = () => {
+
+            const difference = Date.parse(taskDetails.end) - Date.parse(taskDetails.begin);
+
+            const firstMonth = () => this.createInterval().first.getMonth();
+
+            const month = Math.floor(left / (this.state.scale * CELL_MONTH_WIDTH)) + firstMonth() - 1;
+            const oneYear = CELL_MONTH_WIDTH * this.state.scale * (12 - firstMonth() + 1);
+
+            const year = (left > oneYear) ? this.createInterval().first.getFullYear() + Math.ceil(left / (this.state.scale * CELL_MONTH_WIDTH * 12) - oneYear / (CELL_MONTH_WIDTH * this.state.scale * 12)) : this.createInterval().first.getFullYear();
+            taskDetails.begin = new Date(year, (month >= 12) ? (month - (12 * Math.floor(month / 12))) : month, 1);
+            taskDetails.end = new Date(Date.parse(taskDetails.begin) + difference);
+
+            tasks[index] = taskDetails;
+
+            this.props.updateTask(tasks);
+
+        };
+
+        switch (this.state.zoom) {
+            case 'month':
+                calcForMonth();
+                break;
+            default:
+                break;
+        }
+
+        //TODO Rewrite bad code -- really really bad
+        this.setState({needUpdate: !this.state.needUpdate});
+        this.setState({needUpdate: !this.state.needUpdate})
+
+
+    };
 
     highlightRow = (e) => {
         //TODO if clicked on task highlight all the row
@@ -186,9 +249,13 @@ class Gantt extends Component {
         this.setState({taskData: e.target.valueOf})
     };
 
+    rerender = () => {
+        this.forceUpdate();
+
+    };
+
     render() {
         const {tasks, isLoading} = this.props;
-
         return (
             !isLoading ?
                 <div>
@@ -198,9 +265,13 @@ class Gantt extends Component {
                             toMonth={this.toMonth}
                             zoomIn={this.zoomIn}
                             zoomOut={this.zoomOut}
+                            rerender={this.rerender}
                         />
                     </div>
-                    <div style={{display: 'flex'}} ref={this.getRefWrapper} onMouseLeave={this.onMouseLeave}>
+                    <div
+                        style={{display: 'flex'}}
+                        ref={this.getRefWrapper}
+                        onMouseLeave={this.onMouseLeave}>
                         <GanttControl
                             divider={this.state.divider}
                             ref={this.getGanttControlRef}
@@ -216,8 +287,11 @@ class Gantt extends Component {
                             ref={this.getRef}
                             onMouseDown={this.onMouseDown}
                             onMouseUp={this.onMouseUp}
+                            onClick={this.dividerOnClick}
                         />
                         <GanttArea
+                            needUpdate={this.state.needUpdate}
+                            left={this.left}
                             ref={this.getGanttAreaRef}
                             onMouseDown={this.taskMouseDown}
                             onMouseUp={this.taskMouseUp}

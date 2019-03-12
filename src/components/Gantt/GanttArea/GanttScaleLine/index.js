@@ -21,7 +21,7 @@ export default class GanttScaleLine extends Component {
             <div className='gantt-scale-line__wrapper'>
                 {zoom === 'month' ?
                     <div className='gantt-scale-line__year-line' style={{borderRight: '1px solid #ccc'}}>
-                        {this.renderYear(first, last, width, this.props.calcMonthNumber)}
+                        {this.renderYear(first, last, width)}
                     </div> : null}
 
                 <div className='gantt-scale-line__month-line'>
@@ -79,18 +79,18 @@ export default class GanttScaleLine extends Component {
         const calcMonthsNumber = this.props.calcMonthsNumber;
         const lastYear = last.getFullYear();
         const firstYear = first.getFullYear();
-        const differnce = lastYear - firstYear;
+        const difference = lastYear - firstYear;
         const years = [];
         let firstD, lastD;
 
-        for (let i = 0; i <= differnce; i++) {
+        for (let i = 0; i <= difference; i++) {
             if (i === 0) {
                 firstD = first;
             } else {
                 firstD = new Date(firstD.getFullYear() + 1, 0, 1);
             }
 
-            if (i === differnce) {
+            if (i === difference) {
                 lastD = last;
             } else {
                 lastD = new Date(firstD.getFullYear(), 11, 31);
@@ -99,17 +99,17 @@ export default class GanttScaleLine extends Component {
             years.push({year: firstYear + i, first: firstD, last: lastD});
         }
         return (
-            <div className='gantt-scale-line__year-line' style={{}}>
+            <div className='gantt-scale-line__year-line'
+                 style={{}}>
                 {years.map(({year, first, last}, i) => (
                     <div key={i} style={{
-                        width: `${calcMonthsNumber(first, last).length * width}px`,
+                        width: `${((i>=1)?(calcMonthsNumber(first, last).length-1):(calcMonthsNumber(first, last).length)) * width}px`,
                         borderRight: '1px solid #ccc',
                         borderBottom: '1px solid #ccc',
-                        background:`${(i%2===0)?'rgba(204, 204, 204, 0.27)':'#fff'}`
+                        background: `${(i % 2 === 0) ? 'rgba(204, 204, 204, 0.27)' : '#fff'}`
                     }}>{year}</div>
                 ))}
             </div>
         );
     }
-
 }

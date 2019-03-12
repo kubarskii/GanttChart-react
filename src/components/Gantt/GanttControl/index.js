@@ -12,7 +12,6 @@ class GanttControl extends Component {
     render() {
 
         const {tasks, addTask, getTaskData, handleOpenModal, handleClose, modalOpened, modalData, divider} = this.props;
-        console.log('rendered');
         return (
             <div className='gantt gantt-control__wrapper'
                  style={{width: `${divider - 12}px`, order: 1, background: '#f2f9ff'}}>
