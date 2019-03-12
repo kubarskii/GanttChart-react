@@ -86,7 +86,6 @@ export default class GanttTasksLayer extends Component {
             default:
                 width = 1;
         }
-        console.log(width * scale * this.calcMargin(Date.parse(tasks[0].begin)));
         return (
             <div className='gantt-tasks__wrapper'>
                 {tasks.map((task, i) => (

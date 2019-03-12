@@ -209,7 +209,6 @@ class Gantt extends Component {
             const oneYear = CELL_MONTH_WIDTH * this.state.scale * (12 - firstMonth() + 1);
 
             const year = (left > oneYear) ? this.createInterval().first.getFullYear() + Math.ceil(left / (this.state.scale * CELL_MONTH_WIDTH * 12) - oneYear / (CELL_MONTH_WIDTH * this.state.scale * 12)) : this.createInterval().first.getFullYear();
-            console.log(month, (month - (12 * Math.floor(month / 12))), left, year);
             taskDetails.begin = new Date(year, (month >= 12) ? (month - (12 * Math.floor(month / 12))) : month, 1);
             taskDetails.end = new Date(Date.parse(taskDetails.begin) + difference);
 
@@ -252,9 +251,7 @@ class Gantt extends Component {
 
     rerender = () => {
         this.forceUpdate();
-        /*
-                console.log(ReactDOM.findDOMNode(this._GanttArea).childNodes[0].clientWidth);
-        */
+
     };
 
     render() {

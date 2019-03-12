@@ -43,7 +43,8 @@ class GanttArea extends Component {
 
     //quantity if cells
     calcMonthsNumber = (first, last) => {
-        const firstDate = new Date(first.getFullYear(), (first.getMonth() > 0) ? first.getMonth() - 1 : first.getMonth(), first.getDate());
+        console.log(first, last);
+        const firstDate = new Date(first.getFullYear(), (first.getMonth() > -1) ? first.getMonth() - 1 : first.getMonth(), first.getDate());
         const lastDate = last;
 
         let monthBetween = (lastDate.getFullYear() - firstDate.getFullYear()) * 12;
