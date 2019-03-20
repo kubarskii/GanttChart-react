@@ -3,7 +3,9 @@ import GanttScaleLine from './GanttScaleLine/index';
 import GanttGrid from './GanttGrid/index';
 import GanttTasksLayer from './GanttTasksLayer/index';
 import GanttLinksLayer from './GanttLinksLayer/index';
+import GanttVerticalLine from './GanttVerticalLine/index';
 import {CELL_DAY_WIDTH, CELL_MONTH_WIDTH} from '../../../constants/gantt'
+
 
 import './GanttArea.scss';
 import '../GanttStyles.scss';
@@ -65,6 +67,71 @@ class GanttArea extends Component {
         return arr;
     };
 
+
+    calcBegin = () => {
+        const interval = this.createInterval();
+        const first = interval.first;
+        return Date.parse(new Date(first.getFullYear(), first.getMonth(), 1));
+    };
+
+    calcMonthBegin = (timestamp) => {
+        const date = new Date(timestamp);
+        return Date.parse(new Date(date.getFullYear(), date.getMonth(), 1));
+    };
+    calcMonthEnd = (timestamp) => {
+        const date = new Date(timestamp);
+        return Date.parse(new Date(date.getFullYear(), date.getMonth() + 1, 1)) - 1;
+    };
+
+
+    calcWidth = (begin, end) => {
+        const length = (end - this.calcBegin()) - (begin - this.calcBegin());
+        switch (this.props.zoom) {
+            case 'day':
+                return length / 1000 / 60 / 60 / 24 + 1;
+            case 'month':
+                const convert = 1000 * 60 * 60 * 24;
+                const monthLengthB = this.daysInMonth(new Date(begin).getFullYear(), new Date(begin).getMonth())[0];
+                const daysBeginning = Math.ceil((begin - this.calcMonthBegin(begin)) / convert);
+                const daysEnding = Math.floor((this.calcMonthEnd(end) - end - 1) / convert);
+
+                const interval = this.createInterval(
+                    [{
+                        begin: new Date(begin),
+                        end: new Date(end)
+                    }]);
+                interval.firstMonth = interval.first.getMonth();
+                interval.lastMonth = interval.last.getMonth();
+                interval.firstYear = interval.first.getFullYear();
+                interval.lastYear = interval.last.getFullYear();
+                interval.yearDifference = interval.lastYear - interval.firstYear;
+                interval.difference = interval.lastMonth - interval.firstMonth + (interval.yearDifference * 12);
+
+                return (interval.difference + (monthLengthB - daysEnding) / monthLengthB - daysBeginning / monthLengthB);
+            default:
+                return 1;
+        }
+
+    };
+
+
+    calcMargin = (timestamp) => {
+        const begin = this.calcBegin();
+        switch (this.props.zoom) {
+            case 'day':
+                const beginDate = new Date(begin);
+                const start = Date.parse(new Date(beginDate.getFullYear(), beginDate.getMonth()-1, beginDate.getDate()));
+                return Math.floor(((timestamp - start) / 1000 / 60 / 60 / 24));
+            case 'month':
+                const monthBefore = this.calcMonthsNumber(new Date(begin), new Date(timestamp)).length - 1;
+                const monthsQ = this.daysInMonth(new Date(timestamp).getFullYear(), new Date(timestamp).getMonth())[0];
+                return monthBefore + ((timestamp - this.calcMonthBegin(timestamp)) / 1000 / 60 / 60 / 24 / monthsQ);
+            default:
+                return 1;
+        }
+
+    };
+
     render() {
         const {tasks, scale, zoom, getTaskData} = this.props;
         const interval = this.createInterval();
@@ -116,8 +183,18 @@ class GanttArea extends Component {
                         tasks={tasks}
                         interval={interval}
                         getTaskData={getTaskData}
+                        calcMargin={this.calcMargin}
+                        calcWidth={this.calcWidth}
                     />}
                 <GanttLinksLayer/>
+                <GanttVerticalLine
+                    title='Today'
+                    date={new Date()}
+                    createInterval={this.createInterval}
+                    calcMargin={this.calcMargin}
+                    calcWidth={this.calcWidth}
+                    width={width * scale}
+                />
 
             </div>
         );
