@@ -4,7 +4,7 @@ import GanttControl from './GanttControl/index';
 import GanttArea from './GanttArea/index';
 import GanttTools from './GanttTools/index';
 import GanttDivider from './GanttDivider/index';
-import {CELL_MONTH_WIDTH, CELL_DAY_WIDTH} from '../../constants/gantt'
+import {CELL_DAY_WIDTH, CELL_MONTH_WIDTH} from '../../constants/gantt'
 
 
 /*const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];*/
@@ -155,11 +155,12 @@ class Gantt extends Component {
             const shiftX = e.pageX - getCoords(task).left + 7; //margin 4 + borders 3
 
             const dividerWidth = this.state.divider;
+            const initialLeft = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft);
             document.onmousemove = (e) => {
                 task.parentNode.style.left = e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft) + 'px';
                 this.left = task.parentNode.style.left;
                 document.onmouseup = (e) => {
-                    this.calcNewStart(e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft), task.parentNode);
+                    this.calcNewStart(e.pageX - (dividerWidth + shiftX - ganttArea.scrollLeft), task.parentNode, initialLeft);
                     document.onmousemove = null;
                 }
             };
@@ -192,26 +193,35 @@ class Gantt extends Component {
         }
     };
 
-    calcNewStart = (left, task) => {
+    calcNewStart = (left, task, initialLeft) => {
         const taskId = task.getAttribute('data-task-id');
         const tasks = this.props.tasks;
         const taskDetails = tasks.find(obj => obj.id === taskId);
         const index = tasks.findIndex(obj => obj.id === taskId);
-
+        const difference = Date.parse(taskDetails.end) - Date.parse(taskDetails.begin);
 
         const calcForMonth = () => {
-
-            const difference = Date.parse(taskDetails.end) - Date.parse(taskDetails.begin);
-
             const firstMonth = () => this.createInterval().first.getMonth();
-
             const month = Math.floor(left / (this.state.scale * CELL_MONTH_WIDTH)) + firstMonth() - 1;
             const oneYear = CELL_MONTH_WIDTH * this.state.scale * (12 - firstMonth() + 1);
-
             const year = (left > oneYear) ? this.createInterval().first.getFullYear() + Math.ceil(left / (this.state.scale * CELL_MONTH_WIDTH * 12) - oneYear / (CELL_MONTH_WIDTH * this.state.scale * 12)) : this.createInterval().first.getFullYear();
+
             taskDetails.begin = new Date(year, (month >= 12) ? (month - (12 * Math.floor(month / 12))) : month, 1);
             taskDetails.end = new Date(Date.parse(taskDetails.begin) + difference);
+            tasks[index] = taskDetails;
 
+            this.props.updateTask(tasks);
+        };
+
+        const calcForDays = () => {
+            const daysBefore = (Math.floor(left / (CELL_DAY_WIDTH * this.state.scale)));
+            const initialDaysBefore = (Math.floor(initialLeft / (CELL_DAY_WIDTH * this.state.scale)));
+            console.log(daysBefore - initialDaysBefore);
+            const begin = new Date(taskDetails.begin);
+            const _begin = new Date(begin.getFullYear(), begin.getMonth(), begin.getDate() + (daysBefore - initialDaysBefore));
+            console.log(begin, _begin);
+            taskDetails.begin = _begin;
+            taskDetails.end = new Date(Date.parse(taskDetails.begin) + difference);
             tasks[index] = taskDetails;
 
             this.props.updateTask(tasks);
@@ -219,6 +229,9 @@ class Gantt extends Component {
         };
 
         switch (this.state.zoom) {
+            case 'day':
+                calcForDays();
+                break;
             case 'month':
                 calcForMonth();
                 break;

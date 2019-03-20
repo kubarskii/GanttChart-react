@@ -17,7 +17,6 @@ class VerticalLine extends Component {
 
     render() {
         const {title, date} = this.props;
-        console.log('VL:', date);
         return (
             <div className='vertical-line__wrapper'
                  style={{
