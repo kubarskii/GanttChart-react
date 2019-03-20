@@ -4,7 +4,7 @@ import GanttControl from './GanttControl/index';
 import GanttArea from './GanttArea/index';
 import GanttTools from './GanttTools/index';
 import GanttDivider from './GanttDivider/index';
-import {CELL_MONTH_WIDTH} from '../../constants/gantt'
+import {CELL_MONTH_WIDTH, CELL_DAY_WIDTH} from '../../constants/gantt'
 
 
 /*const zoomTypes = ['hour', 'day', 'week', 'month', 'quarter', 'semester', 'year'];*/
